@@ -6,21 +6,21 @@ export default function HeroSection() {
   return (
     <div className="flex flex-col justify-between h-screen p-8 text-left relative">
       {/* Name Top Left */}
-      <div className="text-[#c40505] font-serif italic text-xl tracking-wide">
+      <div className="text-[#c40505] font-serif italic text-1xl tracking-wide">
         lovekesh<br />anand
       </div>
 
       {/* Main Text */}
-      <div className="text-black mt-[400] text-3xl leading-tight max-w-md" style={{fontFamily: 'signifier'}}>
+      <div className="text-black mt-[500] text-6xl " style={{fontFamily: 'signifier'}}>
         <p>
           Innovater + Creative Director<br />
-          building brands, websites, &<br />
+          building brands, websites and<br />
           interactive experiences.
         </p>
       </div>
 
       {/* Contact Info */}
-      <div className="text-red-600 font-mono text-sm tracking-wide">
+      <div className="text-[#c40505] font-mono text-[20px] tracking-wide " style={{fontFamily: 'GT'}}>
         PROJECT INQUIRIES &nbsp; ~ &nbsp; lovekesh@lovekesh.WORK
       </div>
 

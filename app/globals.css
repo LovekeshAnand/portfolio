@@ -26,7 +26,7 @@ body {
   font-display: swap;
 }
 @font-face {
-  font-family: 's';
+  font-family: 'GT';
   src: url('/fonts/GT-America-Mono-Light-Trial.otf') format('opentype');
   font-weight: 200; /* extralight weight */
   font-style: italic; /* italic variant */
@@ -38,4 +38,5 @@ body {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-signifier: 'signifier';
+  --font-GT: 'GT';
 }
