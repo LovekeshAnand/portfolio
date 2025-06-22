@@ -9,7 +9,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main Text */}
-      <div className="text-black mt-[400] text-3xl leading-tight max-w-md" style={{fontFamily: 'signifier'}}>
+      <div className="text-black mt-[400] text-3xl font-signifier leading-tight max-w-md" style={{fontFamily: 'signifier'}}>
         <p>
           Innovater + Creative Director<br />
           building brands, websites, &<br />
@@ -19,7 +19,7 @@ export default function HeroSection() {
 
       {/* Contact Info */}
       <div className="text-red-600 font-mono text-sm tracking-wide">
-        PROJECT INQUIRIES &nbsp; ~ &nbsp; lovekesh@lovekesh.WORK
+        PROJECT INQUIRIES &nbsp; ~ &nbsp; lovekesh@lovekesh.work
       </div>
     </div>
   );
