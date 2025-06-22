@@ -22,10 +22,16 @@ body {
   font-family: 'signifier';
   src: url('/fonts/TestSignifier-ExtralightItalic-BF663d8462c8da1.otf') format('opentype');
   font-weight: 200; /* extralight weight */
-  font-style: italic; /* since it's italic variant */
+  font-style: italic; /* italic variant */
   font-display: swap;
 }
-
+@font-face {
+  font-family: 's';
+  src: url('/fonts/GT-America-Mono-Light-Trial.otf') format('opentype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

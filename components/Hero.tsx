@@ -9,7 +9,7 @@ export default function HeroSection() {
       </div>
 
       {/* Main Text */}
-      <div className="text-black mt-[400] text-3xl font-signifier leading-tight max-w-md" style={{fontFamily: 'signifier'}}>
+      <div className="text-black mt-[300] text-[45px]  font-signifier leading-tight max-w-md" style={{fontFamily: 'signifier'}}>
         <p>
           Innovater + Creative Director<br />
           building brands, websites, &<br />
