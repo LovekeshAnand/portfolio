@@ -16,7 +16,14 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
-  
+}
+
+@font-face {
+  font-family: 'signifier';
+  src: url('/fonts/TestSignifier-ExtralightItalic-BF663d8462c8da1.otf') format('opentype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* since it's italic variant */
+  font-display: swap;
 }
 
 @theme inline {
@@ -25,12 +32,4 @@ body {
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-signifier: 'signifier';
-  
-}
-@font-face {
-  font-family: 'signifier';
-  src: url('/fonts/TestSignifier.otf') format('otf');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
 }
