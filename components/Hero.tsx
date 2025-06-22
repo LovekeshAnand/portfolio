@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function HeroSection() {
   return (
-    <div className="flex flex-col justify-between h-screen p-8 text-left relative">
+    <div className="flex flex-col bg-[white] justify-between h-screen p-8 text-left relative">
       {/* Name Top Left */}
       <div className="text-[#c40505] font-serif italic text-3xl tracking-wide">
         lovekesh<br />anand
@@ -29,8 +29,9 @@ export default function HeroSection() {
         <Image
           src="/images/LA19.svg"
           alt="LA19"
-          height={400}
-          width={400} 
+          className="h-[100%] w-[100%]"
+          height={1000}
+          width={1000} 
         />
       </div>
     </div>
