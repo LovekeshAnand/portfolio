@@ -39,6 +39,27 @@ body {
   font-style: italic; /* italic variant */
   font-display: swap;
 }
+@font-face {
+  font-family: 'playfair';
+  src: url('/fonts/playfair-display.bold-italic.ttf') format('truetype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'manrope';
+  src: url('/fonts/manrope.semibold.otf') format('opentype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Humane';
+  src: url('/fonts/HumaneV.2.0-Medium.otf') format('opentype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -48,7 +69,9 @@ body {
   --font-signifier: 'signifier';
   --font-GT: 'GT';
   --font-fyodor: 'fyodor';
-
+  --font-playfair: 'playfair';
+  --font-manrope: 'manrope';
+  --font-Humane: 'Humane';
 }
 
 
