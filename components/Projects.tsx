@@ -13,11 +13,11 @@ const cards = [
     index: '1 -- 5',
     text: 'Designed a comprehensive design playbook for Logitech-G, capturing the brand\'s dynamic energy and immersive gaming experience.',
     chips: ['GAMING', '2023'],
-    backgroundColor: '#000000',
-    textColor: '#ffffff',
-    borderColor: '#333333',
-    dotColorStart: '#facc15',
-    dotColorEnd: '#ef4444',
+    backgroundColor: '#ffffff',
+   textColor: '#000000',
+    borderColor: 'black',
+    dotColorStart: '#000000',
+    dotColorEnd: '#000000'
   },
   {
     title: 'VOGUE',
@@ -25,11 +25,11 @@ const cards = [
     index: '2 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['FASHION EDUCATION', '2022'],
-    backgroundColor: '#ffffff',
-    textColor: '#000000',
-    borderColor: '#e5e5e5',
-    dotColorStart: '#8b5cf6',
-    dotColorEnd: '#ec4899',
+    backgroundColor: '#000000',
+    textColor: '#ffffff',
+    borderColor: '#ffffff',
+    dotColorStart: '#c40505',
+    dotColorEnd: '#c40505',
   },
   {
     title: 'THIRD',
@@ -37,11 +37,11 @@ const cards = [
     index: '3 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['FASHION', '2025'],
-    backgroundColor: '#1e293b',
-    textColor: '#f1f5f9',
-    borderColor: '#475569',
-    dotColorStart: '#10b981',
-    dotColorEnd: '#f59e0b',
+    backgroundColor: '#ffffff',
+    textColor: '#000000',
+    borderColor: '#000000',
+    dotColorStart: '#000000',
+    dotColorEnd: '#000000',
   },
   {
     title: 'FOURTH',
@@ -49,11 +49,11 @@ const cards = [
     index: '4 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['TECH INDUSTRY', '2023'],
-    backgroundColor: '#7c3aed',
+     backgroundColor: '#000000',
     textColor: '#ffffff',
-    borderColor: '#a855f7',
-    dotColorStart: '#06b6d4',
-    dotColorEnd: '#f97316',
+    borderColor: '#e5e5e5',
+    dotColorStart: '#c40505',
+    dotColorEnd: '#c40505',
   },
 ];
 
@@ -171,7 +171,7 @@ export default function VerticalCardFade() {
             <div
               key={i}
               ref={(el) => { cardRefs.current[i] = el; }}
-              className="absolute inset-6 opacity-0 flex gap-10 rounded-xl border-2 overflow-hidden shadow-lg"
+              className="absolute inset-6 opacity-0 flex gap-10 rounded-4xl border-3 overflow-hidden shadow-lg"
               style={{
                 backgroundColor: card.backgroundColor,
                 color: card.textColor,
@@ -194,10 +194,10 @@ export default function VerticalCardFade() {
                   </div>
                 </div>
                 <div className="text-xl opacity-70">{card.index}</div>
-                <h2 className="text-[60px] font-extrabold overflow-hidden h-[70px]">
+                <h2 className="text-[200px]  overflow-hidden h-[270px]">
                   <span
                     ref={(el) => { titleRefs.current[i] = el; }}
-                    className="inline-block will-change-transform"
+                    className="inline-block  font-Humane"
                   >
                     {card.title}
                   </span>
