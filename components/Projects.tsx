@@ -28,8 +28,8 @@ const cards = [
     backgroundColor: '#000000',
     textColor: '#ffffff',
     borderColor: '#ffffff',
-    dotColorStart: '#c40505',
-    dotColorEnd: '#c40505',
+    dotColorStart: '#ffffff',
+    dotColorEnd: '#ffffff',
   },
   {
     title: 'THIRD',
@@ -52,8 +52,8 @@ const cards = [
      backgroundColor: '#000000',
     textColor: '#ffffff',
     borderColor: '#e5e5e5',
-    dotColorStart: '#c40505',
-    dotColorEnd: '#c40505',
+    dotColorStart: '#ffffff',
+    dotColorEnd: '#ffffff',
   },
 ];
 
@@ -202,14 +202,14 @@ export default function VerticalCardFade() {
                     {card.title}
                   </span>
                 </h2>
-                <p className="text-sm max-w-md opacity-80">{card.text}</p>
+                <p className="text-lg max-w-md opacity-80">{card.text}</p>
                 <div className="flex flex-wrap items-center gap-3 mt-4">
                   <button 
                     ref={(el) => { buttonRefs.current[i] = el; }}
                     className="flex items-center border rounded-full px-4 py-2 transition-colors duration-300 hover:opacity-80"
                     style={{ borderColor: card.borderColor }}
                   >
-                    <span className="text-lg font-medium">VIEW</span>
+                    <span className="text-3xl font-HK">VIEW</span>
                     <span 
                       className="arrow-bg ml-3 font-bold rounded-full p-2 text-xs transition-colors duration-300"
                       style={{ 
@@ -217,18 +217,24 @@ export default function VerticalCardFade() {
                         color: card.backgroundColor 
                       }}
                     >
-                      →
+                     <svg width="21" height="17" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
+</svg>
                     </span>
-                  </button>
+                  </button >
+                 
                   {card.chips?.map((chip) => (
+                    
                     <span 
                       key={chip} 
-                      className="border rounded-full px-4 py-1 text-sm"
+                      className=" border rounded-full justify-between  px-4 py-1 text-lg"
                       style={{ borderColor: card.borderColor }}
                     >
                       {chip}
                     </span>
+                    
                   ))}
+                  
                 </div>
               </div>
 

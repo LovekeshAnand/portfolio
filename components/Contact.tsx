@@ -70,7 +70,7 @@ const ContactForm: React.FC = () => {
           {/* Left Section - Form */}
           <div className="flex-1 p-8 lg:p-16 flex flex-col justify-center max-w-2xl">
             <h1 className="text-4xl lg:text-6xl font-light text-gray-900 mb-16 leading-tight">
-              Say <em className="italic">hello</em>, we're<br />
+              Say <em className="italic">hello</em>, I'm<br />
               ready to listen.
             </h1>
             
@@ -104,8 +104,8 @@ const ContactForm: React.FC = () => {
                   </label>
                   <div className="flex">
                     <select className="border-b-2 border-gray-300 bg-transparent py-3 pr-8 focus:border-gray-900 focus:outline-none transition-colors duration-200 appearance-none bg-no-repeat bg-right text-[#c40505]" 
-                            style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e\")"}}>
-                      <option>+65</option>
+                            style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='0.5' d='m9 9 3 3 3-3'/%3e%3c/svg%3e\")"}}>
+                      <option>+91</option>
                     </select>
                     <input
                       type="tel"
@@ -127,7 +127,7 @@ const ContactForm: React.FC = () => {
               
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">
-                  HOW DID YOU HEAR ABOUT US?
+                  HOW DID YOU HEAR ABOUT ME?
                 </label>
                 <select className="w-full border-b-2 border-gray-300 bg-transparent py-3 px-0 focus:border-gray-900 focus:outline-none transition-colors duration-200 appearance-none bg-no-repeat bg-right text-[#c40505]" 
                         style={{backgroundImage: "url(\"data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e\")"}}>

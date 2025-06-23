@@ -5,8 +5,9 @@ import Image from 'next/image';
 import DownloadButton from './Button';
 export default function AboutSection() {
   return (
-    <>
-      <div className='h-screen pl-16 items-center justify-center'>
+    <>  
+      <div className='h-screen pl-16  items-center justify-center'>
+       <h1 className='font-serif italic text-[#c40505] text-[100px]  mt-30'>About Me</h1>
         <div className='text-black text-4xl leading-relaxed mt-10 font-serif italic'>
           <div className='font-manrope'>
             Hi!
