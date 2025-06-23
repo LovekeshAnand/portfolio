@@ -4,7 +4,7 @@ import "./globals.css";
 
 
 export const metadata: Metadata = {
-  title: "LoveKesh's Portfolio",
+  title: "Lovekesh's Portfolio",
   description: "Lovekesh a creative backend developer who creates scalable, reliable and updated Production grade APIs",
 };
 

@@ -32,6 +32,14 @@ body {
   font-style: italic; /* italic variant */
   font-display: swap;
 }
+@font-face {
+  font-family: 'fyodor';
+  src: url('/fonts/fyodor.bold.ttf') format('truetype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -39,6 +47,7 @@ body {
   --font-mono: var(--font-geist-mono);
   --font-signifier: 'signifier';
   --font-GT: 'GT';
+  --font-fyodor: 'fyodor';
 }
 
 
