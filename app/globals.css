@@ -61,6 +61,20 @@ body {
   font-style: italic; /* italic variant */
   font-display: swap;
 }
+@font-face {
+  font-family: 'montserrat';
+  src: url('/fonts/montserrat.bold.ttf') format('truetype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
+@font-face {
+  font-family: 'HK';
+  src: url('/fonts/HK Guise Regular.otf') format('opentype');
+  font-weight: 200; /* extralight weight */
+  font-style: italic; /* italic variant */
+  font-display: swap;
+}
 
 @theme inline {
   --color-background: var(--background);
@@ -73,6 +87,8 @@ body {
   --font-playfair: 'playfair';
   --font-manrope: 'manrope';
   --font-Humane: 'Humane';
+  --font-montserrat: 'montserrat';
+  --font-HK: 'HK';
 }
 
 

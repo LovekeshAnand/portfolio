@@ -15,8 +15,8 @@ export default function Home() {
         <Image
           src="/images/LA19.svg"
           alt="LA19"
-          height={500}
-          width={500} 
+          height={425}
+          width={425} 
         />
       </div>
         <HeroSection />
