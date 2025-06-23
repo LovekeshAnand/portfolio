@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Image from "next/image";
 
 import VerticalCardFade from "@/components/Projects";
+import ContactForm from "@/components/Contact";
 
 export default function Home() {
   return (
