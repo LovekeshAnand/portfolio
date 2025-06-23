@@ -4,6 +4,7 @@ import AboutSection from "@/components/About";
 
 
 import VerticalCardFade from "@/components/Projects";
+import ContactForm from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -13,6 +14,7 @@ export default function Home() {
        <AboutSection />
        <div className="min-h-[300vh] bg-black text-white">
       <VerticalCardFade /></div>
+      <ContactForm />
       </main>
   
   );
