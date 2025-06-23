@@ -13,6 +13,11 @@ const cards = [
     index: '1 -- 5',
     text: 'Designed a comprehensive design playbook for Logitech-G, capturing the brand\'s dynamic energy and immersive gaming experience.',
     chips: ['GAMING', '2023'],
+    backgroundColor: '#000000',
+    textColor: '#ffffff',
+    borderColor: '#333333',
+    dotColorStart: '#facc15',
+    dotColorEnd: '#ef4444',
   },
   {
     title: 'VOGUE',
@@ -20,6 +25,11 @@ const cards = [
     index: '2 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['FASHION EDUCATION', '2022'],
+    backgroundColor: '#ffffff',
+    textColor: '#000000',
+    borderColor: '#e5e5e5',
+    dotColorStart: '#8b5cf6',
+    dotColorEnd: '#ec4899',
   },
   {
     title: 'THIRD',
@@ -27,6 +37,11 @@ const cards = [
     index: '3 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['FASHION', '2025'],
+    backgroundColor: '#1e293b',
+    textColor: '#f1f5f9',
+    borderColor: '#475569',
+    dotColorStart: '#10b981',
+    dotColorEnd: '#f59e0b',
   },
   {
     title: 'FOURTH',
@@ -34,6 +49,11 @@ const cards = [
     index: '4 -- 5',
     text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
     chips: ['TECH INDUSTRY', '2023'],
+    backgroundColor: '#7c3aed',
+    textColor: '#ffffff',
+    borderColor: '#a855f7',
+    dotColorStart: '#06b6d4',
+    dotColorEnd: '#f97316',
   },
 ];
 
@@ -49,25 +69,25 @@ export default function VerticalCardFade() {
       scrollTrigger: {
         trigger: containerRef.current,
         start: 'top top',
-        end: () => `+=${cards.length * window.innerHeight * 0.5}`, // Even shorter scroll distance
-        scrub: 0.8, // Even smoother scrubbing
+        end: () => `+=${cards.length * window.innerHeight * 0.5}`,
+        scrub: 0.8,
         pin: true,
       },
     });
 
-    cards.forEach((_, i) => {
-      const card = cardRefs.current[i];
+    cards.forEach((card, i) => {
+      const cardEl = cardRefs.current[i];
       const title = titleRefs.current[i];
       const dot = dotRefs.current[i];
       const button = buttonRefs.current[i];
 
-      if (!card || !title || !dot || !button) return;
+      if (!cardEl || !title || !dot || !button) return;
 
-      const startTime = i * 0.6; // Much closer together
+      const startTime = i * 0.6;
 
       // Show first card immediately, others fade in
       if (i === 0) {
-        gsap.set(card, { autoAlpha: 1 });
+        gsap.set(cardEl, { autoAlpha: 1 });
         gsap.set(title, { 
           opacity: 1, 
           y: 0, 
@@ -75,7 +95,7 @@ export default function VerticalCardFade() {
         });
       } else {
         // Fade in current card
-        tl.to(card, { 
+        tl.to(cardEl, { 
           autoAlpha: 1, 
           duration: 0.2,
           ease: "power2.inOut" 
@@ -96,16 +116,16 @@ export default function VerticalCardFade() {
             ease: "power3.out",
             duration: 0.4,
           },
-          startTime // Start exactly with the card fade
+          startTime
         );
       }
 
-      // Color transition from yellow to red
+      // Color transition for dot
       tl.fromTo(
         dot,
-        { backgroundColor: "#facc15" },
+        { backgroundColor: card.dotColorStart },
         { 
-          backgroundColor: "#ef4444",
+          backgroundColor: card.dotColorEnd,
           duration: 0.3,
           ease: "power2.inOut"
         },
@@ -117,9 +137,9 @@ export default function VerticalCardFade() {
       if (arrow) {
         tl.fromTo(
           arrow,
-          { backgroundColor: "#facc15" },
+          { backgroundColor: card.dotColorStart },
           { 
-            backgroundColor: "#ef4444",
+            backgroundColor: card.dotColorEnd,
             duration: 0.3,
             ease: "power2.inOut"
           },
@@ -133,7 +153,7 @@ export default function VerticalCardFade() {
           autoAlpha: 0, 
           duration: 0.2,
           ease: "power2.inOut"
-        }, startTime - 0.1); // Start fading out slightly before new card
+        }, startTime - 0.1);
       }
     });
 
@@ -141,30 +161,39 @@ export default function VerticalCardFade() {
   }, []);
 
   return (
-    <section className="relative h-[160vh] bg-black text-white"> {/* Further reduced height */}
+    <section className="relative h-[300vh] bg-gray-100">
       <div
         ref={containerRef}
-        className="sticky top-0 h-screen flex items-center justify-center"
+        className="sticky top-0 h-screen flex items-center justify-center p-8"
       >
-        <div className="relative w-[90vw] h-[85vh] rounded-[2rem] border border-white/10 bg-white text-black overflow-hidden p-10">
+        <div className="relative w-[90vw] h-[85vh] rounded-[2rem] border-4 border-gray-300 bg-gray-50 overflow-hidden shadow-2xl">
           {cards.map((card, i) => (
             <div
               key={i}
               ref={(el) => { cardRefs.current[i] = el; }}
-              className="absolute inset-0 opacity-0 flex gap-10"
+              className="absolute inset-6 opacity-0 flex gap-10 rounded-xl border-2 overflow-hidden shadow-lg"
+              style={{
+                backgroundColor: card.backgroundColor,
+                color: card.textColor,
+                borderColor: card.borderColor,
+              }}
             >
               {/* LEFT SIDE */}
-              <div className="flex-1 flex flex-col justify-center gap-6 translate-x-[10%]">
+              <div className="flex-1 flex flex-col justify-center gap-6 px-10 py-8">
                 <div className="flex items-center gap-2">
                   <div 
                     ref={(el) => { dotRefs.current[i] = el; }}
-                    className="w-3 h-3 bg-yellow-400 rounded-full transition-colors duration-300"
+                    className="w-3 h-3 rounded-full transition-colors duration-300"
+                    style={{ backgroundColor: card.dotColorStart }}
                   />
-                  <div className="border px-4 py-1 rounded-full text-xs font-semibold">
+                  <div 
+                    className="border px-4 py-1 rounded-full text-xs font-semibold"
+                    style={{ borderColor: card.borderColor }}
+                  >
                     {card.tag}
                   </div>
                 </div>
-                <div className="text-xl">{card.index}</div>
+                <div className="text-xl opacity-70">{card.index}</div>
                 <h2 className="text-[60px] font-extrabold overflow-hidden h-[70px]">
                   <span
                     ref={(el) => { titleRefs.current[i] = el; }}
@@ -173,28 +202,46 @@ export default function VerticalCardFade() {
                     {card.title}
                   </span>
                 </h2>
-                <p className="text-sm max-w-md">{card.text}</p>
+                <p className="text-sm max-w-md opacity-80">{card.text}</p>
                 <div className="flex flex-wrap items-center gap-3 mt-4">
                   <button 
                     ref={(el) => { buttonRefs.current[i] = el; }}
-                    className="flex items-center border rounded-full px-4 py-2 transition-colors duration-300"
+                    className="flex items-center border rounded-full px-4 py-2 transition-colors duration-300 hover:opacity-80"
+                    style={{ borderColor: card.borderColor }}
                   >
                     <span className="text-lg font-medium">VIEW</span>
-                    <span className="arrow-bg ml-3 bg-yellow-400 text-black font-bold rounded-full p-2 text-xs transition-colors duration-300">
+                    <span 
+                      className="arrow-bg ml-3 font-bold rounded-full p-2 text-xs transition-colors duration-300"
+                      style={{ 
+                        backgroundColor: card.dotColorStart,
+                        color: card.backgroundColor 
+                      }}
+                    >
                       →
                     </span>
                   </button>
                   {card.chips?.map((chip) => (
-                    <span key={chip} className="border rounded-full px-4 py-1 text-sm">
+                    <span 
+                      key={chip} 
+                      className="border rounded-full px-4 py-1 text-sm"
+                      style={{ borderColor: card.borderColor }}
+                    >
                       {chip}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* RIGHT SIDE (Empty or keep for future image) */}
-              <div className="flex-1 overflow-hidden rounded-3xl h-full bg-gray-100">
-                {/* Placeholder for images */}
+              {/* RIGHT SIDE */}
+              <div 
+                className="flex-1 mr-8 my-8 rounded-2xl border-2 flex items-center justify-center text-4xl font-light opacity-30"
+                style={{ 
+                  backgroundColor: card.textColor + '10',
+                  borderColor: card.borderColor,
+                  color: card.textColor
+                }}
+              >
+                IMAGE
               </div>
             </div>
           ))}

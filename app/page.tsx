@@ -24,6 +24,7 @@ export default function Home() {
         <div className="min-h-[300vh] bg-black text-white">
           <VerticalCardFade />
         </div>
+        <ContactForm />
         <Footer />
       </main>
   
