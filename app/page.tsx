@@ -9,17 +9,24 @@ import ContactForm from "@/components/Contact";
 export default function Home() {
   return (
     
-      <main className="bg-white">
-              {/* SVG positioned to the right */}
-      
+    <main className="bg-white scroll-smooth">
+      <section id="hero">
         <HeroSection />
+      </section>
+
+      <section id="about">
         <AboutSection />
-        <div className="min-h-[300vh] bg-black text-white">
-          <VerticalCardFade />
-        </div>
+      </section>
+
+      <section id="projects" className="min-h-[300vh] bg-black text-white">
+        <VerticalCardFade />
+      </section>
+
+      <section id="contact">
         <ContactForm />
-        <Footer />
-      </main>
-  
+      </section>
+
+      <Footer />
+    </main>
   );
 }

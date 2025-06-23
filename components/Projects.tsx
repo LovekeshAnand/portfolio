@@ -161,7 +161,7 @@ export default function VerticalCardFade() {
   }, []);
 
   return (
-    <section className="relative h-[300vh] bg-gray-100">
+    <section className="relative h-[300vh] bg-[#c40505]">
       <div
         ref={containerRef}
         className="sticky top-0 h-screen flex items-center justify-center p-8"
