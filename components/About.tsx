@@ -2,11 +2,11 @@
 
 import React from 'react';
 import Image from 'next/image';
-
+import DownloadButton from './Button';
 export default function AboutSection() {
   return (
     <>
-      <div className='h-screen pl-16 flex items-center justify-center'>
+      <div className='h-screen pl-16 items-center justify-center'>
         <div className='text-black text-4xl leading-relaxed mt-10 font-serif italic'>
           <div className='font-manrope'>
             Hi!
@@ -16,10 +16,12 @@ export default function AboutSection() {
           <span className='font-manrope'>Currently pursuing a Bachelor of Technology in <span className='font-playfair underline'>Computer Science</span>.<br /></span>
           <span className='font-manrope'>I enjoy crafting efficient APIs, managing databases, and handling infrastructure that powers real-world applications.</span>
         </div>
-        <div className="border-full border-[#c40505]">
-          resume
+        <div className='flex justify-center '>
+          <DownloadButton />
         </div>
+        
       </div>
+
     </>
   );
 }
