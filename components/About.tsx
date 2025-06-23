@@ -7,10 +7,10 @@ export default function AboutSection() {
   return (
     <>
     <div className='h-screen pl-16'>
-      <div className='text-[#c40505] pt-24 flex justify-start text-6xl mt-14 font-bold' style={{ fontFamily: 'signifier' }}>
+      <div className='text-[#c40505] pt-24 flex justify-start text-7xl mt-14' style={{ fontFamily: 'signifier' }}>
         About Me
       </div>
-      <div className='text-black text-xl leading-relaxed mt-10'>
+      <div className='text-black text-2xl leading-relaxed mt-10 font-serif italic'>
         Hi! <br /> I'm <strong>Lovekesh Anand</strong>, a 19-year-old backend developer from New Delhi. <br />
         I specialize in building secure, scalable systems. <br />
         I'm currently pursuing a B.Tech in Computer Science. <br />

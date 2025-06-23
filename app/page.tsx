@@ -1,7 +1,7 @@
 import HeroSection from "@/components/Hero";
 import AboutSection from "@/components/About";
-
-
+import Footer from "@/components/Footer";
+import Image from "next/image";
 
 import VerticalCardFade from "@/components/Projects";
 
@@ -9,10 +9,21 @@ export default function Home() {
   return (
     
       <main className="bg-white">
-       <HeroSection />
-       <AboutSection />
-       <div className="min-h-[300vh] bg-black text-white">
-      <VerticalCardFade /></div>
+              {/* SVG positioned to the right */}
+      <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-20">
+        <Image
+          src="/images/LA19.svg"
+          alt="LA19"
+          height={500}
+          width={500} 
+        />
+      </div>
+        <HeroSection />
+        <AboutSection />
+        <div className="min-h-[300vh] bg-black text-white">
+          <VerticalCardFade />
+        </div>
+        <Footer />
       </main>
   
   );
