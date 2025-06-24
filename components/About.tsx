@@ -11,7 +11,7 @@ export default function AboutSection() {
         <h1 className='font-serif italic text-[#c40505] text-[48px] sm:text-[64px] md:text-[80px] xl:text-[100px] 2xl:text-[200px] mt-8'>
           About Me
         </h1>
-        <div className='text-black text-xl sm:text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl leading-relaxed mt-6 md:mt-10 font-serif italic'>
+        <div className='text-black sm:text-2xl md:text-3xl xl:text-4xl 2xl:text-5xl leading-relaxed mt-6 md:mt-10 font-serif italic'>
           <div className='font-manrope'>Hi!</div>
           <span>
             <span className='font-manrope'>I'm </span>
