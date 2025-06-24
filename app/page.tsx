@@ -1,8 +1,6 @@
 import HeroSection from "@/components/Hero";
 import AboutSection from "@/components/About";
 import Footer from "@/components/Footer";
-
-
 import VerticalCardFade from "@/components/Projects";
 import ContactForm from "@/components/Contact";
 

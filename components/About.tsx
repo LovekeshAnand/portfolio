@@ -2,8 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import DownloadButton from './Button';
 import Link from 'next/link';
+
 export default function AboutSection() {
   return (
     <>  
@@ -27,7 +27,6 @@ export default function AboutSection() {
                   /></span></span>
         </div>
       </div>
-
     </>
   );
 }

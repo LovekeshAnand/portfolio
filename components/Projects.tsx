@@ -8,52 +8,56 @@ gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
   {
-    title: 'LOGITECH',
-    tag: 'DESIGN SYSTEMS',
-    index: '1 -- 5',
-    text: 'Designed a comprehensive design playbook for Logitech-G, capturing the brand\'s dynamic energy and immersive gaming experience.',
-    chips: ['GAMING', '2023'],
+    title: 'SERVICE FLOW',
+    tag: 'WORKFLOW MANAGEMENT',
+    index: '1 -- 4',
+    text: 'A fullstack web app that streamlines service workflow management with a Node.js backend and responsive user interface.',
+    chips: ['NODE.JS', '2025'],
     backgroundColor: '#ffffff',
-   textColor: '#000000',
+    textColor: '#000000',
     borderColor: 'black',
     dotColorStart: '#000000',
-    dotColorEnd: '#000000'
+    dotColorEnd: '#000000',
+    link: 'https://serviceflow-five.vercel.app/'
   },
   {
-    title: 'VOGUE',
-    tag: 'BRANDING',
-    index: '2 -- 5',
-    text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
-    chips: ['FASHION EDUCATION', '2022'],
+    title: 'LOVE-AUTH',
+    tag: 'AUTHENTICATION SYSTEM',
+    index: '2 -- 4',
+    text: 'Love-Authentication is a lightweight Node.js package that simplifies user authentication by providing plug-and-play APIs for login, registration, JWT handling, and secure session management.',
+    chips: ['NODE PACKAGE', '2025'],
     backgroundColor: '#000000',
     textColor: '#ffffff',
     borderColor: '#ffffff',
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
+    link: 'https://www.npmjs.com/package/love-authentication'
   },
   {
-    title: 'THIRD',
-    tag: 'CHINTU',
-    index: '3 -- 5',
-    text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
-    chips: ['FASHION', '2025'],
+    title: 'SKYNET',
+    tag: 'PORTFOLIO',
+    index: '3 -- 4',
+    text: 'Skynet is a developer-led agency delivering responsive websites and scalable web applications with clean UI and performance-first design.',
+    chips: ['UI-UX', '2025'],
     backgroundColor: '#ffffff',
     textColor: '#000000',
     borderColor: '#000000',
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
+    link: 'https://skynetdev.space/'
   },
   {
-    title: 'FOURTH',
+    title: 'LOVEKESH',
     tag: 'BHALU',
-    index: '4 -- 5',
-    text: 'Led branding, marketing campaigns, and web design for Vogue Summer School, embracing fashion heritage through design.',
-    chips: ['TECH INDUSTRY', '2023'],
-     backgroundColor: '#000000',
+    index: '4 -- 4',
+    text: 'A sleek, developer-friendly portfolio with a polished UI to showcase tech project journey.',
+    chips: ['PERSONAL PORTFOLIO', '2025'],
+    backgroundColor: '#000000',
     textColor: '#ffffff',
     borderColor: '#e5e5e5',
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
+    link: 'https://example.com/fourth'
   },
 ];
 
@@ -208,6 +212,7 @@ export default function VerticalCardFade() {
                     ref={(el) => { buttonRefs.current[i] = el; }}
                     className="flex items-center border rounded-full px-4 py-2 transition-colors duration-300 hover:opacity-80"
                     style={{ borderColor: card.borderColor }}
+                    onClick={() => window.open(card.link, '_blank')}
                   >
                     <span className="text-3xl font-HK">VIEW</span>
                     <span 
