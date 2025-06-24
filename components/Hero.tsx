@@ -22,7 +22,7 @@ export default function HeroSection() {
       </div>
 
       {/* Spline 3D Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0 w-[130vw]">
         <Spline scene="https://prod.spline.design/hrWCxQIJXoFxI6zI/scene.splinecode" />
       </div>
 
@@ -59,14 +59,14 @@ export default function HeroSection() {
         </div>
       </div>
       
-      <div className='w-28 h-10 ml-[250px] mb-[-15px] 
+      {/* <div className='w-28 h-10 ml-[250px] mb-[-15px] 
                       sm:w-32 sm:h-12 sm:ml-[350px] sm:mb-[-18px]
                       md:w-35 md:h-12 md:ml-[577px] md:mb-[-20px] 
                       lg:w-35 lg:h-16 lg:ml-[835px] lg:mb-[-20px] 
-                      xl:w-40 xl:h-20 xl:ml-[1310px] xl:mb-[-50px] 
+                      xl:w-60 xl:h-20 xl:ml-[1310px] xl:mb-[-50px] 
                       2xl:ml-[1720px] 
                       bg-white z-20'>
-      </div>
+      </div> */}
     </div>
   );
 }
