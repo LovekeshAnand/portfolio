@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#a40606] h-[95vh] text-white font-sans px-8 py-12 relative overflow-hidden">
+    <footer className="bg-[#a40606] h-[95vh] 2xl:h-[80vh] text-white font-sans px-8 py-12 relative overflow-hidden">
       {/* Top Left Slogan */}
       <div className="absolute top-6 left-8 text-4xl font-bold leading-tight">
         <p>VANGUARD</p>
@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
 
       {/* Big Brand Name */}
-      <div className="mt-6 text-[350px] font-bold tracking-tight leading-none text-white lowercase">
+      <div className="mt-6 text-[350px] font-bold flex justify-center tracking-tight leading-none text-white lowercase">
         <span>lovekesh</span>
       </div>
 
@@ -55,7 +55,6 @@ export default function Footer() {
         <p>
           <span className="text-xl">©</span>2025 LOVEKESH &nbsp;&nbsp; Made with <a href="" className="underline">Love</a>
         </p>
-       
       </div>
     </footer>
   );
