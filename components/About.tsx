@@ -9,7 +9,7 @@ export default function AboutSection() {
     <>  
       <div className='h-screen pl-16  items-center justify-center'>
        <h1 className='font-serif italic text-[#c40505] text-[100px] mt-8'>About Me</h1>
-        <div className='text-black text-4xl 2xl:text-5xl leading-relaxed mt-10 font-serif italic'>
+        <div className='text-black xl:text-4xl 2xl:text-5xl leading-relaxed mt-10 font-serif italic'>
           <div className='font-manrope'>
             Hi!
           </div>
