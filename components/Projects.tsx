@@ -18,7 +18,8 @@ const cards = [
     borderColor: 'black',
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
-    link: 'https://serviceflow-five.vercel.app/'
+    link: 'https://serviceflow-five.vercel.app/',
+    image: '/images/serviceflow.png' // Add your image path here
   },
   {
     title: 'LOVE-AUTH',
@@ -31,7 +32,8 @@ const cards = [
     borderColor: '#ffffff',
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
-    link: 'https://www.npmjs.com/package/love-authentication'
+    link: 'https://www.npmjs.com/package/love-authentication',
+    image: '/images/loveauth.png' // Add your image path here
   },
   {
     title: 'SKYNET',
@@ -44,7 +46,8 @@ const cards = [
     borderColor: '#000000',
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
-    link: 'https://skynetdev.space/'
+    link: 'https://skynetdev.space/',
+    image: '/images/skynet.png' // Add your image path here
   },
   {
     title: 'LOVEKESH',
@@ -57,7 +60,8 @@ const cards = [
     borderColor: '#e5e5e5',
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
-    link: 'https://example.com/fourth'
+    link: 'https://example.com/fourth',
+    image: '/images/portfolio-preview.jpg' // Add your image path here
   },
 ];
 
@@ -168,91 +172,141 @@ export default function VerticalCardFade() {
     <section className="relative h-[300vh] bg-[#c40505]">
       <div
         ref={containerRef}
-        className="sticky top-0 h-screen flex items-center justify-center p-8"
+        className="sticky top-0 h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
       >
-        <div className="relative w-[90vw] h-[85vh] rounded-[2rem] border-4 border-gray-300 bg-gray-50 overflow-hidden shadow-2xl">
+        <div className="relative w-[95vw] h-[90vh] 
+                        sm:w-[92vw] sm:h-[87vh]
+                        md:w-[90vw] md:h-[85vh] 
+                        rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] 
+                        border-2 sm:border-3 md:border-4 
+                        border-gray-300 bg-gray-50 overflow-hidden shadow-2xl">
           {cards.map((card, i) => (
             <div
               key={i}
               ref={(el) => { cardRefs.current[i] = el; }}
-              className="absolute inset-6 opacity-0 flex gap-10 rounded-4xl border-3 overflow-hidden shadow-lg"
+              className="absolute inset-3 sm:inset-4 md:inset-6 opacity-0 
+                         flex flex-col xl:flex-row gap-4 sm:gap-6 md:gap-8 xl:gap-10 
+                         rounded-2xl sm:rounded-3xl md:rounded-4xl 
+                         border-2 sm:border-3 overflow-hidden shadow-lg"
               style={{
                 backgroundColor: card.backgroundColor,
                 color: card.textColor,
                 borderColor: card.borderColor,
               }}
             >
-              {/* LEFT SIDE */}
-              <div className="flex-1 flex flex-col justify-center gap-6 px-10 py-8">
+              {/* IMAGE SECTION - Top on mobile/tablet, Right on xl+ */}
+              <div 
+                className="flex-1 order-1 xl:order-2 
+                           mx-3 mt-3 mb-2 sm:mx-4 sm:mt-4 sm:mb-3 
+                           md:mx-6 md:mt-6 md:mb-4 
+                           xl:mr-8 xl:my-8 xl:ml-0
+                           rounded-xl sm:rounded-xl md:rounded-2xl 
+                           border xl:border-2 
+                           overflow-hidden
+                           h-32 sm:h-40 md:h-48 xl:h-auto"
+                style={{ 
+                  borderColor: card.borderColor
+                }}
+              >
+                {card.image ? (
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <div 
+                    className="w-full h-full flex items-center justify-center 
+                               text-2xl sm:text-3xl md:text-4xl 
+                               font-light opacity-30"
+                    style={{ 
+                      backgroundColor: card.textColor + '10',
+                      color: card.textColor
+                    }}
+                  >
+                    IMAGE
+                  </div>
+                )}
+              </div>
+
+              {/* TEXT SECTION - Bottom on mobile/tablet, Left on xl+ */}
+              <div className="flex-1 order-2 xl:order-1 
+                             flex flex-col justify-center 
+                             gap-3 sm:gap-4 md:gap-5 xl:gap-6 
+                             px-4 py-3 sm:px-6 sm:py-4 
+                             md:px-8 md:py-6 xl:px-10 xl:py-8">
                 <div className="flex items-center gap-2">
                   <div 
                     ref={(el) => { dotRefs.current[i] = el; }}
-                    className="w-3 h-3 rounded-full transition-colors duration-300"
+                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 
+                               rounded-full transition-colors duration-300"
                     style={{ backgroundColor: card.dotColorStart }}
                   />
                   <div 
-                    className="border px-4 py-1 rounded-full text-xs font-semibold"
+                    className="border px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1 
+                               rounded-full text-xs sm:text-xs md:text-xs 
+                               font-semibold"
                     style={{ borderColor: card.borderColor }}
                   >
                     {card.tag}
                   </div>
                 </div>
-                <div className="text-xl opacity-70">{card.index}</div>
-                <h2 className="text-[200px]  overflow-hidden h-[270px]">
+                
+                <div className="text-sm sm:text-base md:text-lg xl:text-xl opacity-70">
+                  {card.index}
+                </div>
+                
+                <h2 className="text-4xl sm:text-6xl md:text-8xl xl:text-[200px] 
+                               overflow-hidden 
+                               h-12 sm:h-16 md:h-24 xl:h-[270px]">
                   <span
                     ref={(el) => { titleRefs.current[i] = el; }}
-                    className="inline-block  font-Humane"
+                    className="inline-block font-Humane"
                   >
                     {card.title}
                   </span>
                 </h2>
-                <p className="text-lg max-w-md opacity-80">{card.text}</p>
-                <div className="flex flex-wrap items-center gap-3 mt-4">
+                
+                <p className="text-sm sm:text-base md:text-lg xl:text-lg 
+                              max-w-full xl:max-w-md opacity-80">
+                  {card.text}
+                </p>
+                
+                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 sm:mt-3 md:mt-4">
                   <button 
                     ref={(el) => { buttonRefs.current[i] = el; }}
-                    className="flex items-center border rounded-full px-4 py-2 transition-colors duration-300 hover:opacity-80"
+                    className="flex items-center border rounded-full 
+                               px-3 py-1.5 sm:px-4 sm:py-2 
+                               transition-colors duration-300 hover:opacity-80  cursor-pointer"
                     style={{ borderColor: card.borderColor }}
                     onClick={() => window.open(card.link, '_blank')}
                   >
-                    <span className="text-3xl font-HK">VIEW</span>
+                    <span className="text-xl sm:text-2xl md:text-3xl font-HK">VIEW</span>
                     <span 
-                      className="arrow-bg ml-3 font-bold rounded-full p-2 text-xs transition-colors duration-300"
+                      className="arrow-bg ml-2 sm:ml-3 font-bold rounded-full 
+                                 p-1.5 sm:p-2 text-xs transition-colors duration-300"
                       style={{ 
                         backgroundColor: card.dotColorStart,
                         color: card.backgroundColor 
                       }}
                     >
-                     <svg width="21" height="17" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                     <svg className="w-4 h-3 sm:w-5 sm:h-4 md:w-5 md:h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
 </svg>
                     </span>
-                  </button >
+                  </button>
                  
                   {card.chips?.map((chip) => (
-                    
                     <span 
                       key={chip} 
-                      className=" border rounded-full justify-between  px-4 py-1 text-lg"
+                      className="border rounded-full px-3 py-1 sm:px-4 sm:py-1 
+                                 text-sm sm:text-base md:text-lg"
                       style={{ borderColor: card.borderColor }}
                     >
                       {chip}
                     </span>
-                    
                   ))}
-                  
                 </div>
-              </div>
-
-              {/* RIGHT SIDE */}
-              <div 
-                className="flex-1 mr-8 my-8 rounded-2xl border-2 flex items-center justify-center text-4xl font-light opacity-30"
-                style={{ 
-                  backgroundColor: card.textColor + '10',
-                  borderColor: card.borderColor,
-                  color: card.textColor
-                }}
-              >
-                IMAGE
               </div>
             </div>
           ))}

@@ -2,7 +2,7 @@
 
 export default function Footer() {
   return (
-    <footer className="bg-[#a40606] text-white font-sans px-4 sm:px-6 md:px-8 py-12 relative overflow-hidden">
+    <footer className="bg-[#a40606] text-white font-sans px-4 sm:px-6 md:px-8 py-12 relative overflow-hidden 2xl:h-[100vh] xl:h-[100vh]">
       {/* Top Left Slogan */}
       <div className="absolute top-4 left-4 sm:top-6 sm:left-8 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold leading-tight">
         <p>BUILDING</p>
@@ -44,7 +44,7 @@ export default function Footer() {
         <div className="hidden lg:block"></div>
 
         {/* Social Links */}
-        <div className="text-left md:text-right">
+        <div className="text-left md:text-right xl:mr-[-95px] 2xl:mr-[-580px]">
           <h4 className="font-bold mb-2 uppercase">Follow</h4>
           <div className="grid gap-y-1">
             <a href="https://x.com/LovekeshAnand07" target="blank">X</a>
@@ -56,14 +56,14 @@ export default function Footer() {
       </div>
 
       {/* Big Brand Name */}
-      <div className="mt-10 md:mt-16 flex justify-center items-center overflow-hidden">
-        <span className="text-[80px] sm:text-[100px] md:text-[170px] lg:text-[240px] 2xl:text-[350px] font-bold tracking-tight leading-none lowercase whitespace-nowrap break-words text-white text-center">
+      <div className="2xl:mt-5 xl:mt-30 md:mt-16 flex justify-center items-center overflow-hidden">
+        <span className="text-[80px] sm:text-[100px] md:text-[170px] lg:text-[240px] xl:text-[300px] 2xl:text-[450px] font-bold tracking-tight leading-none lowercase whitespace-nowrap break-words text-white text-center">
           lovekesh
         </span>
       </div>
 
       {/* Bottom Bar */}
-      <div className="mt-4 border-t border-white pt-4 flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
+      <div className="2xl:mt-2 border-t border-white pt-4 flex flex-col sm:flex-row justify-between items-center text-sm sm:text-base">
         <p className="mb-2 sm:mb-0">
           <span className="text-lg">©</span>2025 LOVEKESH &nbsp;•&nbsp; Made with{" "}
           <a href="#" className="underline">

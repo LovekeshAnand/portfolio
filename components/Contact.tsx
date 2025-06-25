@@ -52,9 +52,10 @@ const ContactForm: React.FC = () => {
       <div className="relative z-10 flex flex-col lg:flex-row min-h-screen">
         {/* Left Section - Form */}
         <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center max-w-3xl">
-          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-gray-900 mb-10 sm:mb-16 leading-tight">
-            Let's <em className="italic">create</em>, great things together.
+         <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-gray-900 mb-10 sm:mb-16 leading-tight">
+            You’ve got the idea, <em className="italic">Leave the rest to me!</em>
           </h1>
+
 
           <form ref={formRef} onSubmit={handleSubmit} className="space-y-6 sm:space-y-8">
             <input type="hidden" name="time" value={new Date().toLocaleString()} />
@@ -144,7 +145,7 @@ const ContactForm: React.FC = () => {
         </div>
 
         {/* Right Section - Info */}
-        <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center items-start lg:items-end text-left lg:text-right">
+        <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center items-start lg:items-end xl:items-end text-left lg:text-right">
           <div className="w-full">
             <div className="mb-6 sm:mb-8">
               <p className="text-sm font-medium text-gray-700 mb-2 uppercase tracking-wide">

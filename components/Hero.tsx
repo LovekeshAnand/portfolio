@@ -22,7 +22,7 @@ export default function HeroSection() {
       </div>
 
       {/* Spline 3D Background */}
-      <div className="absolute inset-0 z-0 xl:h-[110vh]  flex justify-center items-center">
+      <div className="absolute inset-0 z-0 xl:h-[110vh] lg:h-[110vh] md:h-[110vh] h-[110vh] flex justify-center items-center">
         <Spline scene="https://prod.spline.design/hrWCxQIJXoFxI6zI/scene.splinecode" />
       </div>
 
