@@ -1,23 +1,39 @@
 'use client';
 
-import { Suspense, lazy, useState, useEffect } from 'react';
+import { Suspense, lazy, useState, useEffect, useCallback } from 'react';
 import Image from 'next/image';
 
 // Lazy load the Spline component
 const Spline = lazy(() => import('@splinetool/react-spline'));
 
-
+// Loading component for better UX
+const SplineLoader = () => (
+  <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100">
+    <div className="text-center">
+      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#c40505] mx-auto mb-4"></div>
+      <p className="text-gray-600 text-sm">Loading 3D experience...</p>
+    </div>
+  </div>
+);
 
 export default function HeroSection() {
   const [shouldLoadSpline, setShouldLoadSpline] = useState(false);
+  const [splineLoaded, setSplineLoaded] = useState(false);
+  const [splineError, setSplineError] = useState(false);
 
   useEffect(() => {
-    // Start loading Spline after a short delay to prioritize critical content
-    const timer = setTimeout(() => {
-      setShouldLoadSpline(true);
-    }, 100);
+    // Preload Spline immediately but show loader
+    setShouldLoadSpline(true);
+  }, []);
 
-    return () => clearTimeout(timer);
+  const handleSplineLoad = useCallback(() => {
+    setSplineLoaded(true);
+    console.log('Spline scene loaded successfully');
+  }, []);
+
+  const handleSplineError = useCallback((error: any) => {
+    console.error('Spline loading error:', error);
+    setSplineError(true);
   }, []);
 
   return (
@@ -34,21 +50,41 @@ export default function HeroSection() {
           alt="LA19"
           height={425}
           width={425}
-          priority // This ensures the main image loads first
+          priority
          />
       </div>
 
-      {/* Spline 3D Background with Lazy Loading */}
+      {/* Spline 3D Background with Enhanced Loading */}
       <div className="absolute inset-0 z-0 xl:h-[110vh] lg:h-[110vh] md:h-[110vh] h-[110vh] flex justify-center items-center">
         {shouldLoadSpline && (
-          <Suspense fallback={null}>
-            <Spline 
-              scene="https://prod.spline.design/hrWCxQIJXoFxI6zI/scene.splinecode"
-              onLoad={() => {
-                // Optional: Add any callback when Spline loads
-                console.log('Spline scene loaded');
-              }}
-            />
+          <Suspense fallback={<SplineLoader />}>
+            <div className="relative w-full h-full">
+              {/* Show loader until Spline is ready */}
+              {!splineLoaded && !splineError && <SplineLoader />}
+              
+              {/* Show fallback if Spline fails to load */}
+              {splineError && (
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center">
+                  <div className="text-center text-gray-500">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-gray-300 rounded-full flex items-center justify-center">
+                      <span className="text-2xl">🎨</span>
+                    </div>
+                    <p className="text-sm">3D scene unavailable</p>
+                  </div>
+                </div>
+              )}
+
+              {/* Spline component with optimized settings */}
+              <Spline 
+                scene="https://prod.spline.design/hrWCxQIJXoFxI6zI/scene.splinecode"
+                onLoad={handleSplineLoad}
+                onError={handleSplineError}
+                style={{
+                  opacity: splineLoaded ? 1 : 0,
+                  transition: 'opacity 0.5s ease-in-out'
+                }}
+              />
+            </div>
           </Suspense>
         )}
       </div>
