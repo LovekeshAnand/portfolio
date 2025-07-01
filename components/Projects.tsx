@@ -78,7 +78,7 @@ export default function VerticalCardFade() {
         trigger: containerRef.current,
         start: 'top top',
         end: () => `+=${cards.length * window.innerHeight * 0.5}`,
-        scrub: 0.1,
+        scrub: 0.12, // Increased by 20% from 0.1 to 0.12
         pin: true,
       },
     });
@@ -91,7 +91,7 @@ export default function VerticalCardFade() {
 
       if (!cardEl || !title || !dot || !button) return;
 
-      const startTime = i*0.25;
+      const startTime = i * 0.12; // Increased by 20% from 0.1 to 0.12 for card transitions
 
       // Show first card immediately, others fade in
       if (i === 0) {
@@ -105,7 +105,7 @@ export default function VerticalCardFade() {
         // Fade in current card
         tl.to(cardEl, { 
           autoAlpha: 1, 
-          duration: 0.1,
+          duration: 0.12, // Increased by 20% from 0.1 to 0.12
           ease: "power2.inOut" 
         }, startTime);
 
@@ -122,7 +122,7 @@ export default function VerticalCardFade() {
             y: 0,
             clipPath: "inset(0% 0% 0% 0%)",
             ease: "power3.out",
-            duration: 0.4,
+            duration: 0.24, // Increased by 20% from 0.2 to 0.24
           },
           startTime
         );
@@ -134,10 +134,10 @@ export default function VerticalCardFade() {
         { backgroundColor: card.dotColorStart },
         { 
           backgroundColor: card.dotColorEnd,
-          duration: 0.1,
+          duration: 0.18, // Increased by 20% from 0.15 to 0.18
           ease: "power2.inOut"
         },
-        startTime + 0.03
+        startTime + 0.05
       );
 
       // Button arrow color transition
@@ -148,20 +148,20 @@ export default function VerticalCardFade() {
           { backgroundColor: card.dotColorStart },
           { 
             backgroundColor: card.dotColorEnd,
-            duration: 0.1,
+            duration: 0.18, // Increased by 20% from 0.15 to 0.18
             ease: "power2.inOut"
           },
-          startTime + 0.03
+          startTime + 0.05
         );
       }
 
-      // Fade out previous card
+      // Fade out previous card - ensuring smooth transition
       if (i > 0) {
         tl.to(cardRefs.current[i - 1], { 
           autoAlpha: 0, 
-          duration: 0.2,
+          duration: 0.12, // Increased by 20% from 0.1 to 0.12
           ease: "power2.inOut"
-        }, startTime - 0.03);
+        }, startTime); // Changed timing to start exactly when new card starts fading in
       }
     });
 
@@ -179,7 +179,8 @@ export default function VerticalCardFade() {
                         md:w-[90vw] md:h-[85vh] 
                         rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] 
                         border-2 sm:border-3 md:border-4 
-                        border-gray-300 bg-gray-50 overflow-hidden shadow-2xl">
+                        border-gray-300 overflow-hidden shadow-2xl"
+                style={{ backgroundColor: '#f9fafb' }}>
           {cards.map((card, i) => (
             <div
               key={i}
