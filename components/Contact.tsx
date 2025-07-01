@@ -53,7 +53,7 @@ const ContactForm: React.FC = () => {
         {/* Left Section - Form */}
         <div className="w-full lg:w-1/2 p-6 sm:p-10 lg:p-16 flex flex-col justify-center max-w-3xl">
          <h1 className="text-3xl sm:text-4xl lg:text-6xl font-light text-gray-900 mb-10 sm:mb-16 leading-tight">
-            You've got the idea, <em className="italic">Leave the rest to me!</em>
+            You&apos;ve got the idea, <em className="italic">Leave the rest to me!</em>
           </h1>
 
 
