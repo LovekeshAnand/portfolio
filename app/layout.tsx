@@ -4,7 +4,7 @@ import "./globals.css";
 import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
 
 export const metadata: Metadata = {
-  title: "Lovekesh's Portfolio",
+  title: "Lovekesh Anand",
   description: "Lovekesh a creative backend developer who creates scalable, reliable and updated Production grade APIs",
 };
 
@@ -15,12 +15,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-      >
+      <head>
+        <link rel="icon" href="/images/favicon.png" />
+      </head>
+      <body>
         <SmoothScrollWrapper>
-        {children}
+          {children}
         </SmoothScrollWrapper>
       </body>
     </html>
   );
 }
+
