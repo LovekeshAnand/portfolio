@@ -14,7 +14,7 @@ export default function AboutSection() {
         <div className='text-black sm:text-2xl md:text-3xl xl:text-4xl 2xl:mt-[-30px] 2xl:text-5xl leading-relaxed mt-6 md:mt-10 font-serif italic'>
           <div className='font-manrope'>Hi!</div>
           <span>
-            <span className='font-manrope'>I'm </span>
+            <span className='font-manrope'>I&apos;m </span>
             <strong className='font-playfair underline'>Lovekesh Anand</strong>
           </span>
           <span className='font-manrope'>
