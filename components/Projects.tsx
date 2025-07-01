@@ -78,7 +78,7 @@ export default function VerticalCardFade() {
         trigger: containerRef.current,
         start: 'top top',
         end: () => `+=${cards.length * window.innerHeight * 0.5}`,
-        scrub: 0.8,
+        scrub: 0.1,
         pin: true,
       },
     });
@@ -91,7 +91,7 @@ export default function VerticalCardFade() {
 
       if (!cardEl || !title || !dot || !button) return;
 
-      const startTime = i * 0.6;
+      const startTime = i*0.25;
 
       // Show first card immediately, others fade in
       if (i === 0) {
@@ -105,7 +105,7 @@ export default function VerticalCardFade() {
         // Fade in current card
         tl.to(cardEl, { 
           autoAlpha: 1, 
-          duration: 0.2,
+          duration: 0.1,
           ease: "power2.inOut" 
         }, startTime);
 
@@ -134,10 +134,10 @@ export default function VerticalCardFade() {
         { backgroundColor: card.dotColorStart },
         { 
           backgroundColor: card.dotColorEnd,
-          duration: 0.3,
+          duration: 0.1,
           ease: "power2.inOut"
         },
-        startTime + 0.05
+        startTime + 0.03
       );
 
       // Button arrow color transition
@@ -148,10 +148,10 @@ export default function VerticalCardFade() {
           { backgroundColor: card.dotColorStart },
           { 
             backgroundColor: card.dotColorEnd,
-            duration: 0.3,
+            duration: 0.1,
             ease: "power2.inOut"
           },
-          startTime + 0.05
+          startTime + 0.03
         );
       }
 
@@ -161,7 +161,7 @@ export default function VerticalCardFade() {
           autoAlpha: 0, 
           duration: 0.2,
           ease: "power2.inOut"
-        }, startTime - 0.1);
+        }, startTime - 0.03);
       }
     });
 
