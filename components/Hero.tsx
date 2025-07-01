@@ -31,7 +31,7 @@ export default function HeroSection() {
     console.log('Spline scene loaded successfully');
   }, []);
 
-  const handleSplineError = useCallback((error: any) => {
+  const handleSplineError = useCallback((error: Error | unknown) => {
     console.error('Spline loading error:', error);
     setSplineError(true);
   }, []);
