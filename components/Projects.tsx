@@ -60,8 +60,8 @@ const cards = [
     borderColor: '#e5e5e5',
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
-    link: 'https://example.com/fourth',
-    image: '/images/portfolio-preview.jpg' // Add your image path here
+    link: 'https://lovekeshanand.vercel.app/',
+    image: '/images/portfolio.png' // Add your image path here
   },
 ];
 
@@ -71,92 +71,37 @@ export default function VerticalCardFade() {
   const titleRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
   const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
-  const arrowRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
-    // Detect mobile devices
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
+    const checkDesktop = () => {
+      const isDesktopSize = window.innerWidth >= 1280; // xl breakpoint
+      setIsDesktop(isDesktopSize);
+      
+      // Reset all cards to visible when switching to mobile/tablet
+      if (!isDesktopSize) {
+        cardRefs.current.forEach(card => {
+          if (card) {
+            gsap.set(card, { autoAlpha: 1 });
+          }
+        });
+        titleRefs.current.forEach(title => {
+          if (title) {
+            gsap.set(title, { opacity: 1, y: 0, clipPath: "inset(0% 0% 0% 0%)" });
+          }
+        });
+      }
     };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    
-    return () => window.removeEventListener('resize', checkMobile);
+
+    checkDesktop();
+    window.addEventListener('resize', checkDesktop);
+
+    return () => window.removeEventListener('resize', checkDesktop);
   }, []);
 
   useEffect(() => {
-    // Early return if mobile - use simpler animations
-    if (isMobile) {
-      setupMobileAnimations();
-    } else {
-      setupDesktopAnimations();
-    }
+    if (!isDesktop) return;
 
-    return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-  }, [isMobile]);
-
-  const setupMobileAnimations = () => {
-    // Simplified mobile animations with better performance
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: 'top top',
-        end: () => `+=${cards.length * window.innerHeight * 0.4}`, // Shorter scroll distance
-        scrub: 1.2, // Slower scrub for smoother performance
-        pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    cards.forEach((card, i) => {
-      const cardEl = cardRefs.current[i];
-      const title = titleRefs.current[i];
-
-      if (!cardEl || !title) return;
-
-      const startTime = i * 0.8; // Longer intervals for mobile
-
-      if (i === 0) {
-        gsap.set(cardEl, { autoAlpha: 1 });
-        gsap.set(title, { opacity: 1, y: 0 });
-      } else {
-        // Simplified fade transition only
-        tl.to(cardEl, { 
-          autoAlpha: 1, 
-          duration: 0.4,
-          ease: "power1.inOut" 
-        }, startTime);
-
-        // Simplified title animation
-        tl.fromTo(
-          title,
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            ease: "power2.out",
-            duration: 0.6,
-          },
-          startTime
-        );
-      }
-
-      // Fade out previous card
-      if (i > 0) {
-        tl.to(cardRefs.current[i - 1], { 
-          autoAlpha: 0, 
-          duration: 0.4,
-          ease: "power1.inOut"
-        }, startTime - 0.2);
-      }
-    });
-  };
-
-  const setupDesktopAnimations = () => {
-    // Full desktop animations
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: containerRef.current,
@@ -164,8 +109,6 @@ export default function VerticalCardFade() {
         end: () => `+=${cards.length * window.innerHeight * 0.5}`,
         scrub: 0.8,
         pin: true,
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
       },
     });
 
@@ -173,12 +116,13 @@ export default function VerticalCardFade() {
       const cardEl = cardRefs.current[i];
       const title = titleRefs.current[i];
       const dot = dotRefs.current[i];
-      const arrow = arrowRefs.current[i];
+      const button = buttonRefs.current[i];
 
-      if (!cardEl || !title) return;
+      if (!cardEl || !title || !dot || !button) return;
 
       const startTime = i * 0.6;
 
+      // Show first card immediately, others fade in
       if (i === 0) {
         gsap.set(cardEl, { autoAlpha: 1 });
         gsap.set(title, { 
@@ -187,12 +131,14 @@ export default function VerticalCardFade() {
           clipPath: "inset(0% 0% 0% 0%)" 
         });
       } else {
+        // Fade in current card
         tl.to(cardEl, { 
           autoAlpha: 1, 
           duration: 0.2,
           ease: "power2.inOut" 
         }, startTime);
 
+        // Title animation starts immediately with card fade
         tl.fromTo(
           title,
           {
@@ -211,20 +157,20 @@ export default function VerticalCardFade() {
         );
       }
 
-      // Color transitions for desktop only
-      if (dot) {
-        tl.fromTo(
-          dot,
-          { backgroundColor: card.dotColorStart },
-          { 
-            backgroundColor: card.dotColorEnd,
-            duration: 0.3,
-            ease: "power2.inOut"
-          },
-          startTime + 0.05
-        );
-      }
+      // Color transition for dot
+      tl.fromTo(
+        dot,
+        { backgroundColor: card.dotColorStart },
+        { 
+          backgroundColor: card.dotColorEnd,
+          duration: 0.3,
+          ease: "power2.inOut"
+        },
+        startTime + 0.05
+      );
 
+      // Button arrow color transition
+      const arrow = button?.querySelector('.arrow-bg');
       if (arrow) {
         tl.fromTo(
           arrow,
@@ -238,6 +184,7 @@ export default function VerticalCardFade() {
         );
       }
 
+      // Fade out previous card
       if (i > 0) {
         tl.to(cardRefs.current[i - 1], { 
           autoAlpha: 0, 
@@ -246,45 +193,163 @@ export default function VerticalCardFade() {
         }, startTime - 0.1);
       }
     });
-  };
 
+    return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  }, [isDesktop]);
+
+  // Mobile/Tablet Layout
+  if (!isDesktop) {
+    return (
+      <section className="bg-[#c40505] py-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div className="space-y-8">
+            {cards.map((card, i) => (
+              <div
+                key={i}
+                className="flex flex-col gap-4 sm:gap-6 md:gap-8 
+                           rounded-2xl sm:rounded-3xl md:rounded-4xl 
+                           border-2 sm:border-3 overflow-hidden shadow-lg p-4 sm:p-6 md:p-8"
+                style={{
+                  backgroundColor: card.backgroundColor,
+                  color: card.textColor,
+                  borderColor: card.borderColor,
+                }}
+              >
+                {/* IMAGE SECTION */}
+                <div 
+                  className="rounded-xl sm:rounded-xl md:rounded-2xl 
+                             border overflow-hidden
+                             h-32 sm:h-40 md:h-48"
+                  style={{ 
+                    borderColor: card.borderColor
+                  }}
+                >
+                  {card.image ? (
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="w-full h-full object-cover"
+                    />
+                  ) : (
+                    <div 
+                      className="w-full h-full flex items-center justify-center 
+                                 text-2xl sm:text-3xl md:text-4xl 
+                                 font-light opacity-30"
+                      style={{ 
+                        backgroundColor: card.textColor + '10',
+                        color: card.textColor
+                      }}
+                    >
+                      IMAGE
+                    </div>
+                  )}
+                </div>
+
+                {/* TEXT SECTION */}
+                <div className="flex flex-col justify-center gap-3 sm:gap-4 md:gap-5">
+                  <div className="flex items-center gap-2">
+                    <div 
+                      className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 
+                                 rounded-full"
+                      style={{ backgroundColor: card.dotColorStart }}
+                    />
+                    <div 
+                      className="border px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1 
+                                 rounded-full text-xs sm:text-xs md:text-xs 
+                                 font-semibold"
+                      style={{ borderColor: card.borderColor }}
+                    >
+                      {card.tag}
+                    </div>
+                  </div>
+                  
+                  <div className="text-sm sm:text-base md:text-lg opacity-70">
+                    {card.index}
+                  </div>
+                  
+                  <h2 className="text-4xl sm:text-6xl md:text-8xl font-Humane">
+                    {card.title}
+                  </h2>
+                  
+                  <p className="text-sm sm:text-base md:text-lg opacity-80">
+                    {card.text}
+                  </p>
+                  
+                  <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 sm:mt-3 md:mt-4">
+                    <button 
+                      className="flex items-center border rounded-full 
+                                 px-3 py-1.5 sm:px-4 sm:py-2 
+                                 transition-colors duration-300 hover:opacity-80 cursor-pointer"
+                      style={{ borderColor: card.borderColor }}
+                      onClick={() => window.open(card.link, '_blank')}
+                    >
+                      <span className="text-xl sm:text-2xl md:text-3xl font-HK">VIEW</span>
+                      <span 
+                        className="ml-2 sm:ml-3 font-bold rounded-full 
+                                   p-1.5 sm:p-2 text-xs"
+                        style={{ 
+                          backgroundColor: card.dotColorStart,
+                          color: card.backgroundColor 
+                        }}
+                      >
+                       <svg className="w-4 h-3 sm:w-5 sm:h-4 md:w-5 md:h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
+                        </svg>
+                      </span>
+                    </button>
+                   
+                    {card.chips?.map((chip) => (
+                      <span 
+                        key={chip} 
+                        className="border rounded-full px-3 py-1 sm:px-4 sm:py-1 
+                                   text-sm sm:text-base md:text-lg"
+                        style={{ borderColor: card.borderColor }}
+                      >
+                        {chip}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+
+  // Desktop Layout (xl and above)
   return (
     <section className="relative h-[300vh] bg-[#c40505]">
       <div
         ref={containerRef}
-        className="sticky top-0 h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
+        className="sticky top-0 h-screen flex items-center justify-center p-8"
       >
-        <div className="relative w-[95vw] h-[90vh] 
-                        sm:w-[92vw] sm:h-[87vh]
-                        md:w-[90vw] md:h-[85vh] 
-                        rounded-[1rem] sm:rounded-[1.5rem] md:rounded-[2rem] 
-                        border-2 sm:border-3 md:border-4 
+        <div className="relative w-[90vw] h-[85vh] 
+                        rounded-[2rem] 
+                        border-4 
                         border-gray-300 bg-gray-50 overflow-hidden shadow-2xl">
           {cards.map((card, i) => (
             <div
               key={i}
               ref={(el) => { cardRefs.current[i] = el; }}
-              className="absolute inset-3 sm:inset-4 md:inset-6 opacity-0 
-                         flex flex-col xl:flex-row gap-4 sm:gap-6 md:gap-8 xl:gap-10 
-                         rounded-2xl sm:rounded-3xl md:rounded-4xl 
-                         border-2 sm:border-3 overflow-hidden shadow-lg"
+              className="absolute inset-6 opacity-0 
+                         flex flex-row gap-10 
+                         rounded-4xl 
+                         border-2 overflow-hidden shadow-lg"
               style={{
                 backgroundColor: card.backgroundColor,
                 color: card.textColor,
                 borderColor: card.borderColor,
-                willChange: 'opacity', // Performance hint
               }}
             >
-              {/* IMAGE SECTION - Top on mobile/tablet, Right on xl+ */}
+              {/* IMAGE SECTION - Right */}
               <div 
-                className="flex-1 order-1 xl:order-2 
-                           mx-3 mt-3 mb-2 sm:mx-4 sm:mt-4 sm:mb-3 
-                           md:mx-6 md:mt-6 md:mb-4 
-                           xl:mr-8 xl:my-8 xl:ml-0
-                           rounded-xl sm:rounded-xl md:rounded-2xl 
-                           border xl:border-2 
-                           overflow-hidden
-                           h-32 sm:h-40 md:h-48 xl:h-auto"
+                className="flex-1 order-2 
+                           mr-8 my-8 ml-0
+                           rounded-2xl 
+                           border-2 
+                           overflow-hidden"
                 style={{ 
                   borderColor: card.borderColor
                 }}
@@ -294,12 +359,11 @@ export default function VerticalCardFade() {
                     src={card.image}
                     alt={card.title}
                     className="w-full h-full object-cover"
-                    loading="lazy" // Lazy load images
                   />
                 ) : (
                   <div 
                     className="w-full h-full flex items-center justify-center 
-                               text-2xl sm:text-3xl md:text-4xl 
+                               text-4xl 
                                font-light opacity-30"
                     style={{ 
                       backgroundColor: card.textColor + '10',
@@ -311,25 +375,21 @@ export default function VerticalCardFade() {
                 )}
               </div>
 
-              {/* TEXT SECTION - Bottom on mobile/tablet, Left on xl+ */}
-              <div className="flex-1 order-2 xl:order-1 
+              {/* TEXT SECTION - Left */}
+              <div className="flex-1 order-1 
                              flex flex-col justify-center 
-                             gap-3 sm:gap-4 md:gap-5 xl:gap-6 
-                             px-4 py-3 sm:px-6 sm:py-4 
-                             md:px-8 md:py-6 xl:px-10 xl:py-8">
+                             gap-6 
+                             px-10 py-8">
                 <div className="flex items-center gap-2">
                   <div 
                     ref={(el) => { dotRefs.current[i] = el; }}
-                    className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 
+                    className="w-3 h-3 
                                rounded-full transition-colors duration-300"
-                    style={{ 
-                      backgroundColor: card.dotColorStart,
-                      willChange: isMobile ? 'auto' : 'background-color'
-                    }}
+                    style={{ backgroundColor: card.dotColorStart }}
                   />
                   <div 
-                    className="border px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1 
-                               rounded-full text-xs sm:text-xs md:text-xs 
+                    className="border px-4 py-1 
+                               rounded-full text-xs 
                                font-semibold"
                     style={{ borderColor: card.borderColor }}
                   >
@@ -337,60 +397,55 @@ export default function VerticalCardFade() {
                   </div>
                 </div>
                 
-                <div className="text-sm sm:text-base md:text-lg xl:text-xl opacity-70">
+                <div className="text-xl opacity-70">
                   {card.index}
                 </div>
                 
-                <h2 className="text-4xl sm:text-6xl md:text-8xl xl:text-[200px] 
+                <h2 className="text-[200px] 
                                overflow-hidden 
-                               h-12 sm:h-16 md:h-24 xl:h-[270px]">
+                               h-[270px]">
                   <span
                     ref={(el) => { titleRefs.current[i] = el; }}
                     className="inline-block font-Humane"
-                    style={{ 
-                      willChange: isMobile ? 'opacity, transform' : 'opacity, transform, clip-path'
-                    }}
                   >
                     {card.title}
                   </span>
                 </h2>
                 
-                <p className="text-sm sm:text-base md:text-lg xl:text-lg 
-                              max-w-full xl:max-w-md opacity-80">
+                <p className="text-lg 
+                              max-w-md opacity-80">
                   {card.text}
                 </p>
                 
-                <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 sm:mt-3 md:mt-4">
+                <div className="flex flex-wrap items-center gap-3 mt-4">
                   <button 
                     ref={(el) => { buttonRefs.current[i] = el; }}
                     className="flex items-center border rounded-full 
-                               px-3 py-1.5 sm:px-4 sm:py-2 
+                               px-4 py-2 
                                transition-colors duration-300 hover:opacity-80 cursor-pointer"
                     style={{ borderColor: card.borderColor }}
                     onClick={() => window.open(card.link, '_blank')}
                   >
-                    <span className="text-xl sm:text-2xl md:text-3xl font-HK">VIEW</span>
+                    <span className="text-3xl font-HK">VIEW</span>
                     <span 
-                      ref={(el) => { arrowRefs.current[i] = el; }}
-                      className="arrow-bg ml-2 sm:ml-3 font-bold rounded-full 
-                                 p-1.5 sm:p-2 text-xs transition-colors duration-300"
+                      className="arrow-bg ml-3 font-bold rounded-full 
+                                 p-2 text-xs transition-colors duration-300"
                       style={{ 
                         backgroundColor: card.dotColorStart,
-                        color: card.backgroundColor,
-                        willChange: isMobile ? 'auto' : 'background-color'
+                        color: card.backgroundColor 
                       }}
                     >
-                     <svg className="w-4 h-3 sm:w-5 sm:h-4 md:w-5 md:h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
-</svg>
+                     <svg className="w-5 h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
+                      </svg>
                     </span>
                   </button>
                  
                   {card.chips?.map((chip) => (
                     <span 
                       key={chip} 
-                      className="border rounded-full px-3 py-1 sm:px-4 sm:py-1 
-                                 text-sm sm:text-base md:text-lg"
+                      className="border rounded-full px-4 py-1 
+                                 text-lg"
                       style={{ borderColor: card.borderColor }}
                     >
                       {chip}

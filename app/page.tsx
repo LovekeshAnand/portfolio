@@ -16,7 +16,7 @@ export default function Home() {
         <AboutSection />
       </section>
 
-      <section id="projects" className="min-h-[300vh] bg-black text-white">
+      <section id="projects" className="text-white">
         <VerticalCardFade />
       </section>
 
