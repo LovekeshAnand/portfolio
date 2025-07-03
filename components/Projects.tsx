@@ -173,7 +173,6 @@ export default function VerticalCardFade() {
       const cardEl = cardRefs.current[i];
       const title = titleRefs.current[i];
       const dot = dotRefs.current[i];
-      const button = buttonRefs.current[i];
       const arrow = arrowRefs.current[i];
 
       if (!cardEl || !title) return;
