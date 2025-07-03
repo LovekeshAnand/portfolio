@@ -22,8 +22,17 @@ export default function HeroSection() {
   const [splineError, setSplineError] = useState(false);
 
   useEffect(() => {
-    // Preload Spline immediately but show loader
-    setShouldLoadSpline(true);
+    // Only load Spline on non-mobile screens
+    const checkScreenSize = () => {
+      if (window.innerWidth >= 768) { // md breakpoint and above
+        setShouldLoadSpline(true);
+      }
+    };
+
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+
+    return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
 
   const handleSplineLoad = useCallback(() => {
@@ -54,8 +63,8 @@ export default function HeroSection() {
          />
       </div>
 
-      {/* Spline 3D Background with Enhanced Loading */}
-      <div className="absolute inset-0 z-0 xl:h-[110vh] lg:h-[110vh] md:h-[110vh] h-[110vh] flex justify-center items-center">
+      {/* Spline 3D Background with Enhanced Loading - Hidden on mobile */}
+      <div className="absolute inset-0 z-0 xl:h-[110vh] lg:h-[110vh] md:h-[110vh] h-[110vh] flex justify-center items-center hidden md:block">
         {shouldLoadSpline && (
           <Suspense fallback={<SplineLoader />}>
             <div className="relative w-full h-full">
