@@ -143,7 +143,7 @@ export default function VerticalCardFade() {
           trigger: containerRef.current,
           start: 'top top',
           end: () => `+=${cards.length * window.innerHeight * 0.4}`,
-          scrub: 0.3, // Reduced scrub for better performance
+          scrub: 0.3, 
           pin: true,
         },
       });
