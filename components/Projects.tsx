@@ -181,7 +181,7 @@ export default function VerticalCardFade() {
     <section className={`sticky ${isMobile ? 'h-[400vh]' : 'h-[300vh]'} bg-[#c40505]`}>
       <div
         ref={containerRef}
-        className={`${isMobile ? 'relative' : 'sticky top-0'} h-screen flex items-center justify-center p-4 sm:p-6 md:p-8`}
+        className={`${isMobile ? 'sticky' : 'sticky top-0'} h-screen flex items-center justify-center p-4 sm:p-6 md:p-8`}
       >
         <div className="relative w-[95vw] h-[90vh] 
                         sm:w-[92vw] sm:h-[87vh]
