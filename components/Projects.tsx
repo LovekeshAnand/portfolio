@@ -85,7 +85,7 @@ export default function VerticalCardFade() {
 
   useEffect(() => {
     if (isMobile) {
-      // Simple mobile version with basic scroll animations
+      // Mobile version with sticky container and simple animations
       const cards = cardRefs.current.filter(Boolean);
       
       cards.forEach((card, i) => {
@@ -96,45 +96,46 @@ export default function VerticalCardFade() {
           autoAlpha: i === 0 ? 1 : 0,
           scale: i === 0 ? 1 : 0.95
         });
-        
-        // Simple fade animations for mobile
-        ScrollTrigger.create({
+      });
+
+      // Simple timeline for mobile with sticky behavior
+      const tl = gsap.timeline({
+        scrollTrigger: {
           trigger: containerRef.current,
-          start: `top+=${i * 25}% center`,
-          end: `top+=${(i + 1) * 25}% center`,
-          onEnter: () => {
-            gsap.to(card, { 
-              autoAlpha: 1, 
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onLeave: () => {
-            gsap.to(card, { 
-              autoAlpha: 0, 
-              scale: 0.95,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onEnterBack: () => {
-            gsap.to(card, { 
-              autoAlpha: 1, 
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(card, { 
-              autoAlpha: 0, 
-              scale: 0.95,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
-        });
+          start: 'top top',
+          end: () => `+=${cards.length * window.innerHeight * 0.3}`,
+          scrub: 0.1, // Very light scrub for mobile
+          pin: true,
+        },
+      });
+
+      cards.forEach((card, i) => {
+        const cardEl = cardRefs.current[i];
+        if (!cardEl) return;
+
+        const startTime = i * 0.3;
+
+        if (i === 0) {
+          gsap.set(cardEl, { autoAlpha: 1, scale: 1 });
+        } else {
+          // Simple fade in
+          tl.to(cardEl, { 
+            autoAlpha: 1, 
+            scale: 1,
+            duration: 0.2,
+            ease: "power2.out" 
+          }, startTime);
+        }
+
+        // Fade out previous card
+        if (i > 0) {
+          tl.to(cardRefs.current[i - 1], { 
+            autoAlpha: 0, 
+            scale: 0.95,
+            duration: 0.2,
+            ease: "power2.out"
+          }, startTime - 0.1);
+        }
       });
     } else {
       // Full desktop animations
@@ -178,10 +179,10 @@ export default function VerticalCardFade() {
   }, [isMobile]);
 
   return (
-    <section className={`relative ${isMobile ? 'h-[400vh]' : 'h-[300vh]'} bg-[#c40505]`}>
+    <section className={`relative ${isMobile ? 'h-[300vh]' : 'h-[300vh]'} bg-[#c40505]`}>
       <div
         ref={containerRef}
-        className={`${isMobile ? 'relative' : 'sticky top-0'} h-screen flex items-center justify-center p-4 sm:p-6 md:p-8`}
+        className="sticky top-0 h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
       >
         <div className="relative w-[95vw] h-[90vh] 
                         sm:w-[92vw] sm:h-[87vh]
