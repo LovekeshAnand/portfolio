@@ -1,7 +1,6 @@
 'use client';
 
 import { useRef, useEffect, useState } from 'react';
-import Image from 'next/image';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -20,7 +19,7 @@ const cards = [
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
     link: 'https://serviceflow-five.vercel.app/',
-    image: '/images/serviceflow.png'
+    image: '/images/serviceflow.png' // Add your image path here
   },
   {
     title: 'LOVE-AUTH',
@@ -34,7 +33,7 @@ const cards = [
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
     link: 'https://www.npmjs.com/package/love-authentication',
-    image: '/images/loveauth.png'
+    image: '/images/loveauth.png' // Add your image path here
   },
   {
     title: 'SKYNET',
@@ -48,7 +47,7 @@ const cards = [
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
     link: 'https://skynetdev.space/',
-    image: '/images/skynet.png'
+    image: '/images/skynet.png' // Add your image path here
   },
   {
     title: 'LOVEKESH',
@@ -62,17 +61,21 @@ const cards = [
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
     link: 'https://example.com/fourth',
-    image: '/images/portfolio-preview.jpg'
+    image: '/images/portfolio-preview.jpg' // Add your image path here
   },
 ];
 
 export default function VerticalCardFade() {
   const containerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const titleRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const dotRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const arrowRefs = useRef<(HTMLSpanElement | null)[]>([]);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Detect mobile device
+    // Detect mobile devices
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
@@ -84,104 +87,173 @@ export default function VerticalCardFade() {
   }, []);
 
   useEffect(() => {
+    // Early return if mobile - use simpler animations
     if (isMobile) {
-      // Simple mobile version with basic scroll animations
-      const cards = cardRefs.current.filter(Boolean);
-      
-      cards.forEach((card, i) => {
-        if (!card) return;
-        
-        // Set initial state for mobile
-        gsap.set(card, { 
-          autoAlpha: i === 0 ? 1 : 0,
-          scale: i === 0 ? 1 : 0.95
-        });
-        
-        // Simple fade animations for mobile
-        ScrollTrigger.create({
-          trigger: containerRef.current,
-          start: `top+=${i * 25}% center`,
-          end: `top+=${(i + 1) * 25}% center`,
-          onEnter: () => {
-            gsap.to(card, { 
-              autoAlpha: 1, 
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onLeave: () => {
-            gsap.to(card, { 
-              autoAlpha: 0, 
-              scale: 0.95,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onEnterBack: () => {
-            gsap.to(card, { 
-              autoAlpha: 1, 
-              scale: 1,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(card, { 
-              autoAlpha: 0, 
-              scale: 0.95,
-              duration: 0.3,
-              ease: "power2.out"
-            });
-          }
-        });
-      });
+      setupMobileAnimations();
     } else {
-      // Full desktop animations
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: 'top top',
-          end: () => `+=${cards.length * window.innerHeight * 0.4}`,
-          scrub: 0.3, 
-          pin: true,
-        },
-      });
-
-      cards.forEach((card, i) => {
-        const cardEl = cardRefs.current[i];
-        if (!cardEl) return;
-
-        const startTime = i * 0.4;
-
-        if (i === 0) {
-          gsap.set(cardEl, { autoAlpha: 1 });
-        } else {
-          tl.to(cardEl, { 
-            autoAlpha: 1, 
-            duration: 0.2,
-            ease: "power2.inOut" 
-          }, startTime);
-        }
-
-        if (i > 0) {
-          tl.to(cardRefs.current[i - 1], { 
-            autoAlpha: 0, 
-            duration: 0.2,
-            ease: "power2.inOut"
-          }, startTime - 0.1);
-        }
-      });
+      setupDesktopAnimations();
     }
 
     return () => ScrollTrigger.getAll().forEach(trigger => trigger.kill());
   }, [isMobile]);
 
+  const setupMobileAnimations = () => {
+    // Simplified mobile animations with better performance
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: () => `+=${cards.length * window.innerHeight * 0.4}`, // Shorter scroll distance
+        scrub: 1.2, // Slower scrub for smoother performance
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    cards.forEach((card, i) => {
+      const cardEl = cardRefs.current[i];
+      const title = titleRefs.current[i];
+
+      if (!cardEl || !title) return;
+
+      const startTime = i * 0.8; // Longer intervals for mobile
+
+      if (i === 0) {
+        gsap.set(cardEl, { autoAlpha: 1 });
+        gsap.set(title, { opacity: 1, y: 0 });
+      } else {
+        // Simplified fade transition only
+        tl.to(cardEl, { 
+          autoAlpha: 1, 
+          duration: 0.4,
+          ease: "power1.inOut" 
+        }, startTime);
+
+        // Simplified title animation
+        tl.fromTo(
+          title,
+          { opacity: 0, y: 20 },
+          {
+            opacity: 1,
+            y: 0,
+            ease: "power2.out",
+            duration: 0.6,
+          },
+          startTime
+        );
+      }
+
+      // Fade out previous card
+      if (i > 0) {
+        tl.to(cardRefs.current[i - 1], { 
+          autoAlpha: 0, 
+          duration: 0.4,
+          ease: "power1.inOut"
+        }, startTime - 0.2);
+      }
+    });
+  };
+
+  const setupDesktopAnimations = () => {
+    // Full desktop animations
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: containerRef.current,
+        start: 'top top',
+        end: () => `+=${cards.length * window.innerHeight * 0.5}`,
+        scrub: 0.8,
+        pin: true,
+        anticipatePin: 1,
+        invalidateOnRefresh: true,
+      },
+    });
+
+    cards.forEach((card, i) => {
+      const cardEl = cardRefs.current[i];
+      const title = titleRefs.current[i];
+      const dot = dotRefs.current[i];
+      const button = buttonRefs.current[i];
+      const arrow = arrowRefs.current[i];
+
+      if (!cardEl || !title) return;
+
+      const startTime = i * 0.6;
+
+      if (i === 0) {
+        gsap.set(cardEl, { autoAlpha: 1 });
+        gsap.set(title, { 
+          opacity: 1, 
+          y: 0, 
+          clipPath: "inset(0% 0% 0% 0%)" 
+        });
+      } else {
+        tl.to(cardEl, { 
+          autoAlpha: 1, 
+          duration: 0.2,
+          ease: "power2.inOut" 
+        }, startTime);
+
+        tl.fromTo(
+          title,
+          {
+            opacity: 0,
+            y: 40,
+            clipPath: "inset(0% 0% 100% 0%)",
+          },
+          {
+            opacity: 1,
+            y: 0,
+            clipPath: "inset(0% 0% 0% 0%)",
+            ease: "power3.out",
+            duration: 0.4,
+          },
+          startTime
+        );
+      }
+
+      // Color transitions for desktop only
+      if (dot) {
+        tl.fromTo(
+          dot,
+          { backgroundColor: card.dotColorStart },
+          { 
+            backgroundColor: card.dotColorEnd,
+            duration: 0.3,
+            ease: "power2.inOut"
+          },
+          startTime + 0.05
+        );
+      }
+
+      if (arrow) {
+        tl.fromTo(
+          arrow,
+          { backgroundColor: card.dotColorStart },
+          { 
+            backgroundColor: card.dotColorEnd,
+            duration: 0.3,
+            ease: "power2.inOut"
+          },
+          startTime + 0.05
+        );
+      }
+
+      if (i > 0) {
+        tl.to(cardRefs.current[i - 1], { 
+          autoAlpha: 0, 
+          duration: 0.2,
+          ease: "power2.inOut"
+        }, startTime - 0.1);
+      }
+    });
+  };
+
   return (
-    <section className={`fixed ${isMobile ? 'h-[400vh]' : 'h-[300vh]'} bg-[#c40505]`}>
+    <section className="relative h-[300vh] bg-[#c40505]">
       <div
         ref={containerRef}
-        className={`${isMobile ? 'fixed' : 'sticky top-0'} h-screen flex items-center justify-center p-4 sm:p-6 md:p-8`}
+        className="sticky top-0 h-screen flex items-center justify-center p-4 sm:p-6 md:p-8"
       >
         <div className="relative w-[95vw] h-[90vh] 
                         sm:w-[92vw] sm:h-[87vh]
@@ -201,9 +273,10 @@ export default function VerticalCardFade() {
                 backgroundColor: card.backgroundColor,
                 color: card.textColor,
                 borderColor: card.borderColor,
+                willChange: 'opacity', // Performance hint
               }}
             >
-              {/* IMAGE SECTION - Optimized for mobile */}
+              {/* IMAGE SECTION - Top on mobile/tablet, Right on xl+ */}
               <div 
                 className="flex-1 order-1 xl:order-2 
                            mx-3 mt-3 mb-2 sm:mx-4 sm:mt-4 sm:mb-3 
@@ -218,16 +291,12 @@ export default function VerticalCardFade() {
                 }}
               >
                 {card.image ? (
-                  <div className="relative w-full h-full">
-                    <Image
-                      src={card.image}
-                      alt={card.title}
-                      fill
-                      sizes="(max-width: 768px) 95vw, (max-width: 1200px) 45vw, 40vw"
-                      className="object-cover"
-                      priority={i === 0}
-                    />
-                  </div>
+                  <img
+                    src={card.image}
+                    alt={card.title}
+                    className="w-full h-full object-cover"
+                    loading="lazy" // Lazy load images
+                  />
                 ) : (
                   <div 
                     className="w-full h-full flex items-center justify-center 
@@ -243,7 +312,7 @@ export default function VerticalCardFade() {
                 )}
               </div>
 
-              {/* TEXT SECTION - Simplified for mobile */}
+              {/* TEXT SECTION - Bottom on mobile/tablet, Left on xl+ */}
               <div className="flex-1 order-2 xl:order-1 
                              flex flex-col justify-center 
                              gap-3 sm:gap-4 md:gap-5 xl:gap-6 
@@ -251,9 +320,13 @@ export default function VerticalCardFade() {
                              md:px-8 md:py-6 xl:px-10 xl:py-8">
                 <div className="flex items-center gap-2">
                   <div 
+                    ref={(el) => { dotRefs.current[i] = el; }}
                     className="w-2 h-2 sm:w-2.5 sm:h-2.5 md:w-3 md:h-3 
-                               rounded-full"
-                    style={{ backgroundColor: card.dotColorStart }}
+                               rounded-full transition-colors duration-300"
+                    style={{ 
+                      backgroundColor: card.dotColorStart,
+                      willChange: isMobile ? 'auto' : 'background-color'
+                    }}
                   />
                   <div 
                     className="border px-2 py-0.5 sm:px-3 sm:py-1 md:px-4 md:py-1 
@@ -269,37 +342,48 @@ export default function VerticalCardFade() {
                   {card.index}
                 </div>
                 
-                <h2 className="text-3xl sm:text-5xl md:text-7xl xl:text-[200px] 
-                               font-Humane leading-tight">
-                  {card.title}
+                <h2 className="text-4xl sm:text-6xl md:text-8xl xl:text-[200px] 
+                               overflow-hidden 
+                               h-12 sm:h-16 md:h-24 xl:h-[270px]">
+                  <span
+                    ref={(el) => { titleRefs.current[i] = el; }}
+                    className="inline-block font-Humane"
+                    style={{ 
+                      willChange: isMobile ? 'opacity, transform' : 'opacity, transform, clip-path'
+                    }}
+                  >
+                    {card.title}
+                  </span>
                 </h2>
                 
                 <p className="text-sm sm:text-base md:text-lg xl:text-lg 
-                              max-w-full xl:max-w-md opacity-80 leading-relaxed">
+                              max-w-full xl:max-w-md opacity-80">
                   {card.text}
                 </p>
                 
                 <div className="flex flex-wrap items-center gap-2 sm:gap-3 mt-2 sm:mt-3 md:mt-4">
                   <button 
+                    ref={(el) => { buttonRefs.current[i] = el; }}
                     className="flex items-center border rounded-full 
                                px-3 py-1.5 sm:px-4 sm:py-2 
-                               transition-transform duration-200 hover:scale-105 
-                               active:scale-95 cursor-pointer"
+                               transition-colors duration-300 hover:opacity-80 cursor-pointer"
                     style={{ borderColor: card.borderColor }}
                     onClick={() => window.open(card.link, '_blank')}
                   >
                     <span className="text-xl sm:text-2xl md:text-3xl font-HK">VIEW</span>
                     <span 
-                      className="ml-2 sm:ml-3 font-bold rounded-full 
-                                 p-1.5 sm:p-2 text-xs"
+                      ref={(el) => { arrowRefs.current[i] = el; }}
+                      className="arrow-bg ml-2 sm:ml-3 font-bold rounded-full 
+                                 p-1.5 sm:p-2 text-xs transition-colors duration-300"
                       style={{ 
                         backgroundColor: card.dotColorStart,
-                        color: card.backgroundColor 
+                        color: card.backgroundColor,
+                        willChange: isMobile ? 'auto' : 'background-color'
                       }}
                     >
                      <svg className="w-4 h-3 sm:w-5 sm:h-4 md:w-5 md:h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
-                      </svg>
+<path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
+</svg>
                     </span>
                   </button>
                  
