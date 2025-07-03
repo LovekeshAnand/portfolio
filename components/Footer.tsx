@@ -40,7 +40,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Spacer for layout on 3-column */}
+
         <div className="hidden lg:block"></div>
 
         {/* Social Links */}
