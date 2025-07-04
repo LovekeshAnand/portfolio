@@ -102,7 +102,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex flex-col justify-between h-full">
         {/* Name Top Left */}
         <div className="text-[#c40505] font-serif italic text-lg sm:text-xl lg:text-xl tracking-wide">
-          lovekesh<br />anand
+          Lovekesh<br />Anand
         </div>
 
         {/* Main Text */}
