@@ -106,11 +106,13 @@ export default function HeroSection() {
         </div>
 
         {/* Main Text */}
-        <div className="text-black text-3xl mt-[550px]
-                        sm:text-3xl sm:mt-[450px]
-                       md:text-4xl md:mt-[570px]
-                        lg:text-5xl lg:mt-[450px]
-                        xl:text-6xl"
+        <div className='bottom-0'>
+        <div className="text-black text-3xl 
+                        sm:text-3xl 
+                       md:text-4xl
+                        lg:text-5xl 
+                        xl:text-6xl
+                        mb-7"
              style={{ fontFamily: 'signifier' }}>
           <p>
             Innovater + Creative Director<br />
@@ -128,6 +130,7 @@ export default function HeroSection() {
                         tracking-wide"
              style={{ fontFamily: 'GT' }}>
           PROJECT INQUIRIES &nbsp; ~ &nbsp; lovekeshanand6@gmail.com
+        </div>
         </div>
       </div>
     </div>
