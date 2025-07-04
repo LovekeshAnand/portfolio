@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next"
 
 import "./globals.css";
 import SmoothScrollWrapper from "@/components/SmoothScrollWrapper";
@@ -21,6 +22,7 @@ export default function RootLayout({
       <body>
         <SmoothScrollWrapper>
           {children}
+          <Analytics />
         </SmoothScrollWrapper>
       </body>
     </html>
