@@ -107,7 +107,7 @@ export default function HeroSection() {
 
         {/* Main Text */}
         <div className='bottom-0'>
-        <div className="text-black text-3xl 
+        <div className="text-black text-2xl 
                         sm:text-3xl 
                        md:text-4xl
                         lg:text-5xl 
