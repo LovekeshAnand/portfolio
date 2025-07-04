@@ -6,25 +6,48 @@ import ContactForm from "@/components/Contact";
 
 export default function Home() {
   return (
-    
     <main className="bg-white scroll-smooth">
-      <section id="hero">
-        <HeroSection />
-      </section>
+      {/* Mobile/Tablet Background - Hidden on Desktop */}
+      <div className="lg:hidden fixed inset-0 z-0 pointer-events-none">
+        <div className="min-h-screen w-full bg-[#f9fafb] relative">
+          {/* Diagonal Fade Grid Background - Top Left */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              backgroundImage: `
+                linear-gradient(to right, #d1d5db 1px, transparent 1px),
+                linear-gradient(to bottom, #d1d5db 1px, transparent 1px)
+              `,
+              backgroundSize: "32px 32px",
+              WebkitMaskImage:
+                "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
+              maskImage:
+                "radial-gradient(ellipse 80% 80% at 0% 0%, #000 50%, transparent 90%)",
+            }}
+          />
+        </div>
+      </div>
 
-      <section id="about">
-        <AboutSection />
-      </section>
+      {/* Content Sections with Relative Positioning */}
+      <div className="relative z-10">
+        <section id="hero">
+          <HeroSection />
+        </section>
 
-      <section id="projects" className="text-white">
-        <VerticalCardFade />
-      </section>
+        <section id="about">
+          <AboutSection />
+        </section>
 
-      <section id="contact">
-        <ContactForm />
-      </section>
+        <section id="projects" className="text-white">
+          <VerticalCardFade />
+        </section>
 
-      <Footer />
+        <section id="contact">
+          <ContactForm />
+        </section>
+
+        <Footer />
+      </div>
     </main>
   );
 }
