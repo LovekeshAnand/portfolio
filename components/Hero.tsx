@@ -115,7 +115,7 @@ export default function HeroSection() {
                         mb-7"
              style={{ fontFamily: 'signifier' }}>
           <p>
-            Innovater + Creative Director<br />
+            Innovator + Creative Director<br />
             building brands, websites and<br />
             interactive experiences.
           </p>
