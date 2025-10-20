@@ -19,7 +19,7 @@ const cards = [
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
     link: 'https://serviceflow-five.vercel.app/',
-    image: '/images/serviceflow.png' // Add your image path here
+    image: '/images/serviceflow.svg' // Add your image path here
   },
   {
     title: 'LOVE-AUTH',
@@ -33,7 +33,7 @@ const cards = [
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
     link: 'https://www.npmjs.com/package/love-authentication',
-    image: '/images/loveauth.png' // Add your image path here
+    image: '/images/loveauth.svg' // Add your image path here
   },
   {
     title: 'SKYNET',
@@ -47,11 +47,11 @@ const cards = [
     dotColorStart: '#000000',
     dotColorEnd: '#000000',
     link: 'https://skynetdev.space/',
-    image: '/images/skynet.png' // Add your image path here
+    image: '/images/skynet.svg' // Add your image path here
   },
   {
     title: 'LOVEKESH',
-    tag: 'BHALU',
+    tag: 'PORTFOLIO',
     index: '4 -- 4',
     text: 'A sleek, developer-friendly portfolio with a polished UI to showcase tech project journey.',
     chips: ['PERSONAL PORTFOLIO', '2025'],
@@ -61,7 +61,7 @@ const cards = [
     dotColorStart: '#ffffff',
     dotColorEnd: '#ffffff',
     link: 'https://lovekeshanand.vercel.app/',
-    image: '/images/portfolio.png' // Add your image path here
+    image: '/images/portfolio.svg' // Add your image path here
   },
 ];
 

@@ -44,7 +44,7 @@ export default function AboutSection() {
               .
               <Image
                 className='inline-block ml-[-50px] mb-[-40px] align-middle w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px] xl:ml-[-70px] xl:mb-[-70px] 2xl:ml-[-200px] 2xl:mb-[-100px] lg:ml-[-100px] lg:mb-[-70px] md:ml-[-100px] md:mb-[-70px]'
-                src='/images/hand_cursor.png'
+                src='/images/hand_cursor.svg'
                 alt='LA19'
                 width={70}
                 height={70}
