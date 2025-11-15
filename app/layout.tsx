@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Lovekesh Anand Portfolio",
     images: [
       {
-        url: "/images/preview.png",
+        url: "/images/preview.svg",
         width: 1200,
         height: 630,
         alt: "Lovekesh Anand Portfolio Preview",
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
     title: "Lovekesh Anand — Backend Developer Portfolio",
     description:
       "Creative backend developer who builds scalable, reliable, and production-grade APIs.",
-    images: ["/images/preview.png"],
-    creator: "@yourTwitterHandle", // (Optional)
+    images: ["/images/preview.svg"],
+    creator: "@LovekeshAnand07", // (Optional)
   },
   icons: {
     icon: "/images/favicon.svg",

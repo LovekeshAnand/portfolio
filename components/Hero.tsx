@@ -52,10 +52,10 @@ export default function HeroSection() {
           className='w-[300px] h-[300px] mr-[-150px] mt-[-50px]
                     sm:w-[400px] sm:h-[400px] sm:mr-[-175px] sm:mt-[-60px]
                    md:w-[500px] md:h-[500px] md:mt-[-130px] md:mr-[-250px]
-                    lg:w-[600px] lg:h-[600px] lg:mt-[-100px] lg:mr-[-300px]
-                    xl:w-[800px] xl:h-[800px] xl:mr-[-400px] xl:mt-[5px]
+                    lg:w-[800px] lg:h-[800px] lg:mt-[-100px] lg:mr-[-300px]
+                    xl:w-[900px] xl:h-[800px] xl:mr-[-400px] xl:mt-[5px]
                     z-50'
-          src="/images/LA19.svg"
+          src="/images/LA20.svg"
           alt="LA19"
           height={425}
           width={425}

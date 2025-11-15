@@ -18,7 +18,7 @@ export default function AboutSection() {
             <strong className='font-playfair underline'>Lovekesh Anand</strong>
           </span>
           <span className='font-manrope'>
-            , a 19-year-old backend developer from New Delhi.<br />
+            , a 20-year-old backend developer from New Delhi.<br />
           </span>
           <span className='font-manrope'>
             I specialize in building secure and scalable systems using <br className='hidden sm:inline' />
@@ -36,7 +36,7 @@ export default function AboutSection() {
             Download my{' '}
             <span className='font-playfair underline'>
               <Link
-                href='https://drive.google.com/file/d/160DFkVwyPLMXsK8zXFSKLuvA8fF6eGoO/view?usp=sharing'
+                href='https://drive.google.com/file/d/1Z2fTXpQg6SzKpvl0eqIFqyPBFJUxzBek/view?usp=sharing'
                 target='_blank'
               >
                 Resume

@@ -18,7 +18,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* ===== Custom Fonts (.woff2 optimized) ===== */
+/* ===== Custom Fonts (Safari-Compatible) ===== */
 
 @font-face {
   font-family: 'signifier';
@@ -26,6 +26,8 @@ body {
   font-weight: 200;
   font-style: italic;
   font-display: swap;
+  /* Safari fix: explicit unicode range */
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -34,6 +36,7 @@ body {
   font-weight: 300;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -42,6 +45,7 @@ body {
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -50,6 +54,7 @@ body {
   font-weight: 700;
   font-style: italic;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -58,6 +63,7 @@ body {
   font-weight: 600;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -66,6 +72,7 @@ body {
   font-weight: 500;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -74,6 +81,7 @@ body {
   font-weight: 700;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 @font-face {
@@ -82,6 +90,7 @@ body {
   font-weight: 400;
   font-style: normal;
   font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* ===== Tailwind Theme Variables ===== */
@@ -91,14 +100,14 @@ body {
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-signifier: 'signifier';
-  --font-GT: 'GT';
-  --font-fyodor: 'fyodor';
-  --font-playfair: 'playfair';
-  --font-manrope: 'manrope';
-  --font-Humane: 'Humane';
-  --font-montserrat: 'montserrat';
-  --font-HK: 'HK';
+  --font-signifier: 'signifier', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-GT: 'GT', 'Courier New', monospace;
+  --font-fyodor: 'fyodor', Georgia, serif;
+  --font-playfair: 'playfair', Georgia, serif;
+  --font-manrope: 'manrope', -apple-system, sans-serif;
+  --font-Humane: 'Humane', -apple-system, sans-serif;
+  --font-montserrat: 'montserrat', -apple-system, sans-serif;
+  --font-HK: 'HK', -apple-system, sans-serif;
 }
 
 /* ===== Hide Scrollbar ===== */
@@ -110,6 +119,6 @@ body {
 
 /* Firefox, Edge, IE */
 html {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
