@@ -49,11 +49,11 @@ export default function HeroSection() {
     <div className="flex flex-col justify-between h-screen p-8 text-left relative overflow-hidden">
       <div className="absolute right-0 top-1/2 transform -translate-y-1/2 z-50">
         <Image
-          className='w-[300px] h-[300px] mr-[-150px] mt-[-50px]
-                    sm:w-[400px] sm:h-[400px] sm:mr-[-175px] sm:mt-[-60px]
-                   md:w-[500px] md:h-[500px] md:mt-[-130px] md:mr-[-250px]
-                    lg:w-[800px] lg:h-[800px] lg:mt-[-100px] lg:mr-[-300px]
-                    xl:w-[900px] xl:h-[800px] xl:mr-[-400px] xl:mt-[5px]
+          className='w-[200px] h-[200px] mr-[-100px] mt-[-30px]
+                    sm:w-[250px] sm:h-[250px] sm:mr-[-120px] sm:mt-[-40px]
+                   md:w-[300px] md:h-[300px] md:mt-[-80px] md:mr-[-150px]
+                    lg:w-[500px] lg:h-[500px] lg:mt-[-60px] lg:mr-[-200px]
+                    xl:w-[600px] xl:h-[600px] xl:mr-[-250px] xl:mt-[0px]
                     z-50'
           src="/images/LA20.svg"
           alt="LA19"
@@ -101,18 +101,18 @@ export default function HeroSection() {
       {/* Content Overlay */}
       <div className="relative z-10 flex flex-col justify-between h-full">
         {/* Name Top Left */}
-        <div className="text-[#c40505] font-serif italic text-lg sm:text-xl lg:text-xl tracking-wide">
+        <div className="text-[#c40505] font-serif italic text-base sm:text-lg lg:text-lg tracking-wide">
           Lovekesh<br />Anand
         </div>
 
         {/* Main Text */}
         <div className='bottom-0'>
-        <div className="text-black text-2xl 
-                        sm:text-3xl 
-                       md:text-4xl
-                        lg:text-5xl 
-                        xl:text-6xl
-                        mb-7"
+        <div className="text-black text-xl 
+                        sm:text-2xl 
+                       md:text-3xl
+                        lg:text-4xl 
+                        xl:text-5xl
+                        mb-5"
              style={{ fontFamily: 'signifier' }}>
           <p>
             Innovator + Creative Director<br />
@@ -122,11 +122,11 @@ export default function HeroSection() {
         </div>
 
         {/* Contact Info */}
-        <div className="text-[#c40505] font-mono text-[15px] z-30
-                       sm:text-[14px]
-                       md:text-[15px]
-                        lg:text-[15px]
-                        xl:text-[20px]
+        <div className="text-[#c40505] font-mono text-[12px] z-30
+                       sm:text-[13px]
+                       md:text-[14px]
+                        lg:text-[14px]
+                        xl:text-[16px]
                         tracking-wide"
              style={{ fontFamily: 'GT' }}>
           PROJECT INQUIRIES &nbsp; ~ &nbsp; lovekeshanand6@gmail.com

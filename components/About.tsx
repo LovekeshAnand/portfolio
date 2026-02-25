@@ -7,11 +7,11 @@ import Link from 'next/link';
 export default function AboutSection() {
   return (
     <>
-      <div className='h-[110vh] px-4 sm:px-6 md:px-12 lg:pl-16  flex flex-col justify-center xl:mt-[-80px] lg:mt-[-70px]'>
-        <h1 className='font-serif italic text-[#c40505] text-[48px] sm:text-[64px] md:text-[80px] xl:text-[100px] 2xl:text-[200px] 2xl:mt-[-50px] mt-8'>
+      <div className='h-[110vh] px-4 sm:px-6 md:px-12 lg:pl-16  flex flex-col justify-center xl:mt-[-50px] lg:mt-[-50px]'>
+        <h1 className='font-serif italic text-[#c40505] text-[40px] sm:text-[52px] md:text-[64px] xl:text-[80px] 2xl:text-[160px] 2xl:mt-[-50px] mt-8'>
           About Me
         </h1>
-        <div className='text-black sm:text-2xl md:text-3xl xl:text-4xl 2xl:mt-[-30px] 2xl:text-5xl leading-relaxed mt-6 md:mt-10 font-serif italic'>
+        <div className='text-black sm:text-xl md:text-2xl xl:text-3xl 2xl:mt-[-30px] 2xl:text-4xl leading-relaxed mt-6 md:mt-10 font-serif italic'>
           <div className='font-manrope'>Hi!</div>
           <span>
             <span className='font-manrope'>I&apos;m </span>
@@ -43,7 +43,7 @@ export default function AboutSection() {
               </Link>
               .
               <Image
-                className='inline-block ml-[-50px] mb-[-40px] align-middle w-[40px] h-[40px] sm:w-[50px] sm:h-[50px] md:w-[60px] md:h-[60px] xl:ml-[-70px] xl:mb-[-70px] 2xl:ml-[-200px] 2xl:mb-[-100px] lg:ml-[-100px] lg:mb-[-70px] md:ml-[-100px] md:mb-[-70px]'
+                className='inline-block ml-[-40px] mb-[-30px] align-middle w-[32px] h-[32px] sm:w-[40px] sm:h-[40px] md:w-[48px] md:h-[48px] xl:ml-[-56px] xl:mb-[-56px] 2xl:ml-[-160px] 2xl:mb-[-80px] lg:ml-[-80px] lg:mb-[-56px] md:ml-[-80px] md:mb-[-56px]'
                 src='/images/hand_cursor.svg'
                 alt='LA19'
                 width={70}

@@ -111,7 +111,7 @@ export default function VerticalCardSections() {
                   ) : (
                     <div 
                       className="w-full h-full flex items-center justify-center 
-                                 text-2xl sm:text-3xl md:text-4xl 
+                                 text-xl sm:text-2xl md:text-3xl 
                                  font-light opacity-30"
                       style={{ 
                         backgroundColor: card.textColor + '10',
@@ -141,15 +141,15 @@ export default function VerticalCardSections() {
                     </div>
                   </div>
                   
-                  <div className="text-sm sm:text-base md:text-lg opacity-70">
+                  <div className="text-xs sm:text-sm md:text-base opacity-70">
                     {card.index}
                   </div>
                   
-                  <h2 className="text-4xl sm:text-6xl md:text-8xl font-Humane">
+                  <h2 className="text-3xl sm:text-5xl md:text-6xl font-Humane">
                     {card.title}
                   </h2>
                   
-                  <p className="text-sm sm:text-base md:text-lg opacity-80">
+                  <p className="text-xs sm:text-sm md:text-base opacity-80">
                     {card.text}
                   </p>
                   
@@ -161,7 +161,7 @@ export default function VerticalCardSections() {
                       style={{ borderColor: card.borderColor }}
                       onClick={() => window.open(card.link, '_blank')}
                     >
-                      <span className="text-xl sm:text-2xl md:text-3xl font-HK">VIEW</span>
+                      <span className="text-lg sm:text-xl md:text-2xl font-HK">VIEW</span>
                       <span 
                         className="ml-2 sm:ml-3 font-bold rounded-full 
                                    p-1.5 sm:p-2 text-xs"
@@ -170,7 +170,7 @@ export default function VerticalCardSections() {
                           color: card.backgroundColor 
                         }}
                       >
-                       <svg className="w-4 h-3 sm:w-5 sm:h-4 md:w-5 md:h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                       <svg className="w-3 h-2.5 sm:w-4 sm:h-3 md:w-4 md:h-3" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
                         </svg>
                       </span>
@@ -179,8 +179,8 @@ export default function VerticalCardSections() {
                     {card.chips?.map((chip) => (
                       <span 
                         key={chip} 
-                        className="border rounded-full px-3 py-1 sm:px-4 sm:py-1 
-                                   text-sm sm:text-base md:text-lg"
+                        className="border rounded-full px-2 py-0.5 sm:px-3 sm:py-1 
+                                   text-xs sm:text-sm md:text-base"
                         style={{ borderColor: card.borderColor }}
                       >
                         {chip}
@@ -241,7 +241,7 @@ export default function VerticalCardSections() {
                     ) : (
                       <div 
                         className="w-full h-full flex items-center justify-center 
-                                   text-4xl 
+                                   text-3xl 
                                    font-light opacity-30"
                         style={{ 
                           backgroundColor: card.textColor + '10',
@@ -256,16 +256,16 @@ export default function VerticalCardSections() {
                   {/* TEXT SECTION - Left */}
                   <div className="flex-1 order-1 
                                  flex flex-col justify-center 
-                                 gap-6 
+                                 gap-5 
                                  px-10 py-8">
                     <div className="flex items-center gap-2">
                       <div 
-                        className="w-3 h-3 
+                        className="w-2.5 h-2.5 
                                    rounded-full"
                         style={{ backgroundColor: card.dotColorStart }}
                       />
                       <div 
-                        className="border px-4 py-1 
+                        className="border px-3 py-0.5 
                                    rounded-full text-xs 
                                    font-semibold"
                         style={{ borderColor: card.borderColor }}
@@ -274,24 +274,24 @@ export default function VerticalCardSections() {
                       </div>
                     </div>
                     
-                    <div className="text-xl opacity-70">
+                    <div className="text-lg opacity-70">
                       {card.index}
                     </div>
                     
-                    <h2 className="text-[200px] 
+                    <h2 className="text-[160px] 
                                    overflow-hidden 
-                                   h-[270px]">
+                                   h-[220px]">
                       <span className="inline-block font-Humane">
                         {card.title}
                       </span>
                     </h2>
                     
-                    <p className="text-lg 
+                    <p className="text-base 
                                   max-w-md opacity-80">
                       {card.text}
                     </p>
                     
-                    <div className="flex flex-wrap items-center gap-3 mt-4">
+                    <div className="flex flex-wrap items-center gap-3 mt-3">
                       <button 
                         className="flex items-center border rounded-full 
                                    px-4 py-2 
@@ -299,7 +299,7 @@ export default function VerticalCardSections() {
                         style={{ borderColor: card.borderColor }}
                         onClick={() => window.open(card.link, '_blank')}
                       >
-                        <span className="text-3xl font-HK">VIEW</span>
+                        <span className="text-2xl font-HK">VIEW</span>
                         <span 
                           className="ml-3 font-bold rounded-full 
                                      p-2 text-xs"
@@ -308,7 +308,7 @@ export default function VerticalCardSections() {
                             color: card.backgroundColor 
                           }}
                         >
-                         <svg className="w-5 h-4" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
+                         <svg className="w-4 h-3.5" viewBox="0 0 41 37" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M0.500008 21.7256L0.5 15.5L34.7563 17.229L16.5207 6.72555L16.5207 0.5L40.5 18.5269L16.5207 36.5L16.5207 30.5451L35.0306 19.9213L0.500008 21.7256Z" fill="currentColor"></path>
                           </svg>
                         </span>
@@ -317,8 +317,8 @@ export default function VerticalCardSections() {
                       {card.chips?.map((chip) => (
                         <span 
                           key={chip} 
-                          className="border rounded-full px-4 py-1 
-                                     text-lg"
+                          className="border rounded-full px-3 py-0.5 
+                                     text-base"
                           style={{ borderColor: card.borderColor }}
                         >
                           {chip}
